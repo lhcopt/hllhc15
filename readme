@@ -1,0 +1,13 @@
+Prerelease of HL-LHC version 1.5.
+
+Expected changes:
+- new TAXS position (difference IR1/IR5) [not implemented]
+- new name for the MQSFX [not implemented]
+
+- displacement D2
+- new TAXN position
+- new TCLMB position
+- new corrector package positions and magnetic lengths
+  https://edms.cern.ch/document/2114564/1   (currents)
+  https://edms.cern.ch/ui/file/1963788/1.1  (magnetic length)
+  https://indico.cern.ch/event/774098/contributions/3266218/attachments/1777272/2892101/Integration_meeting_11012019.pptx (positions)
