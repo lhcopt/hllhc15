@@ -97,6 +97,9 @@ exec,aperture_2in1_def(MBRD.4,OCTAGON,hv_D2,hv_D2,angle1_D2,angle2_D2,r_tol_D2,h
 exec,aperture_2in1_def(MCBRDH.4,OCTAGON,hv_D2,hv_D2,angle1_D2,angle2_D2,r_tol_C2,h_tol_C2,v_tol_C2);
 exec,aperture_2in1_def(MCBRDV.4,OCTAGON,hv_D2,hv_D2,angle1_D2,angle2_D2,r_tol_C2,h_tol_C2,v_tol_C2);
 
+exec,aperture_2in1_def(VMBRDA.4,OCTAGON,hv_D2,hv_D2,angle1_D2,angle2_D2,r_tol_D2,h_tol_D2,v_tol_D2);
+exec,aperture_2in1_def(VMBRDB.4,OCTAGON,hv_D2,hv_D2,angle1_D2,angle2_D2,r_tol_C2,h_tol_C2,v_tol_C2);
+
 system,"rm d2_aperture";assign, echo="d2_aperture";
 exec,write_OCTAGON(xx1,yy1,xx2,yy2);
 assign, echo=terminal;
@@ -312,7 +315,8 @@ r_tol_BPM_Q6 =r_tol_Q5; h_tol_BPM_Q6 =h_tol_Q5; v_tol_BPM_Q6 =v_tol_Q5;
 !a_TAN=0.0370; b_TAN=0.0320; !95mm
 !was a 26 mm radius circle nominally,see also offset files
 !where the aperture sep. of the TAN has been reduced from 160 mm to 155 mm
-a_TAN:=0.0425-1.5e-3*(1-no_bs_tol); b_TAN:=0.0425-1.5e-3*(1-no_bs_tol);
+a_TAN:=0.0425-1.5e-3*(1-no_bs_tol)-0.0025;
+b_TAN:=0.0425-1.5e-3*(1-no_bs_tol)-0.0025;
 r_tol_TAN:=0.00084+r_tol_TAN_mod;
 h_tol_TAN:=0.00136+h_tol_TAN_mod;v_tol_TAN:=0.001+v_tol_TAN_mod;
 

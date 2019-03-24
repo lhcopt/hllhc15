@@ -38,7 +38,7 @@ dq1q2a      =          3.6280000000 ;
 dq1aq1b     =          0.6060000000 ; !-0.04 from V1.2
 dq2aq2b     =          2.1080000000 ;
 dq2bq3      =          3.6280000000 ;
-deltaposD2  =        -15.3870000000 ;!max. field D2 35 Tm -> move D2 as close as possible to D1
+deltaposD2  =        -15.3870000000 - 0.300;!max. field D2 35.1 Tm
 deltaposQ4  =         10.500   ;
 deltaposQ5  =         10.500 ;
 deltaposQ6  =          0.0000000000 ;
@@ -54,8 +54,6 @@ l.MCBXFB    =          1.2          ;
 l.MCBXFA    =          2.2          ;
 l.MBRD      =          7.78         ;
 l.MCBRD     =          1.89         ;
-crabs_2     = 1                     ;
-cut_mcbrd   = 0                     ;
 };
 
 !value, l.MQXL,l.MQX,dq1q2a,dq2aq2b,dq2bq3;
@@ -473,15 +471,15 @@ exec,install_ir15_cmn(MCBXFBV.B2,  posMCBXFBb );
 ! layout
 
                          !V1.3  V1.2
-l.MQSXF   = 0.462 ;  !0.807 0.716 a2 corrector
-l.MCSXF   = 0.171 ;  !0.111 0.121 b3 corrector
-l.MCSSXF  = 0.171 ;  !0.111 0.121 a3 corrector
-l.MCOXF   = 0.151 ;  !0.087 0.137 b4 corrector
-l.MCOSXF  = 0.151 ;  !0.087 0.137 a4 corrector
-l.MCDXF   = 0.138 ;  !0.095 0.079 b5 corrector
-l.MCDSXF  = 0.138 ;  !0.095 0.079 a5 corrector
-l.MCTXF   = 0.465 ;  !0.430 0.339 b6 corrector
-l.MCTSXF  = 0.092;  !0.089 0.087 a6 corrector
+l.MQSXF   = 0.402 ;  !0.807 0.716 a2 corrector
+l.MCSXF   = 0.168 ;  !0.111 0.121 b3 corrector
+l.MCSSXF  = 0.168 ;  !0.111 0.121 a3 corrector
+l.MCOXF   = 0.145 ;  !0.087 0.137 b4 corrector
+l.MCOSXF  = 0.145 ;  !0.087 0.137 a4 corrector
+l.MCDXF   = 0.145 ;  !0.095 0.079 b5 corrector
+l.MCDSXF  = 0.145 ;  !0.095 0.079 a5 corrector
+l.MCTXF   = 0.469 ;  !0.430 0.339 b6 corrector
+l.MCTSXF  = 0.099;  !0.089 0.087 a6 corrector
 
 
 ! Q3|.5} 1.00 {.5  | MCBXFA  | .5
@@ -495,16 +493,16 @@ l.MCTSXF  = 0.092;  !0.089 0.087 a6 corrector
 !              .08 | MCSXF   | .08
 !              .08 | MCSSXF  | .08 }
 
-posMCBXFA  := posQ3b     + (l.MQXFA   + l.MCBXFA )/2.+2.747;
-posMQSXF   := posMCBXFA  + 1.806;
-posMCTXF   := posMQSXF   + 0.772;
-posMCTSXF  := posMCTXF   + 0.410;
-posMCDXF   := posMCTSXF  + 0.239;
-posMCDSXF  := posMCDXF   + 0.242;
-posMCOXF   := posMCDSXF  + 0.242;
-posMCOSXF  := posMCOXF   + 0.242;
-posMCSXF   := posMCOSXF  + 0.248;
-posMCSSXF  := posMCSXF   + 0.254;
+posMCBXFA  := posQ3b     + (l.MQXFA   + l.MCBXFA )/2.+2.747+0.117; !68.560
+posMQSXF   := posMCBXFA  + 1.806-0.196; ! 70.17
+posMCTXF   := posMQSXF   + 0.772-0.132; !value,posMCTXF -70.81;
+posMCTSXF  := posMCTXF   + 0.410+0.028; !value,posMCTSXF-71.248;
+posMCDXF   := posMCTSXF  + 0.239+0.031; !value,posMCDXF -71.518;
+posMCDSXF  := posMCDXF   + 0.242+0.048; !value,posMCDSXF-71.808;
+posMCOXF   := posMCDSXF  + 0.242+0.049; !value,posMCOXF -72.0990;
+posMCOSXF  := posMCOXF   + 0.242+0.048; !value,posMCOSXF-72.3890;
+posMCSXF   := posMCOSXF  + 0.248+0.051; !value,posMCSXF -72.6880;
+posMCSSXF  := posMCSXF   + 0.254+0.054; !value,posMCSSXF-72.9960;
 
 value,posMCBXFA,posMQSXF,posMCTXF,posMCTSXF,posMCDXF,posMCDSXF,posMCOXF,posMCOSXF,posMCSXF,posMCSSXF;
 
@@ -546,17 +544,17 @@ Kmin_MCDXF := -Kmax_MCDXF ;
 Kmin_MCDSXF:= -Kmax_MCDSXF;
 Kmin_MCTSXF:= -Kmax_MCTSXF;
 
-Imax_MCBXFA =2500;
-Imax_MCBXFB =2500;
-Imax_MQSXF  = 182;
-Imax_MCSSXF = 132;
-Imax_MCSXF  = 132;
-Imax_MCOSXF = 120;
-Imax_MCOXF  = 120;
-Imax_MCDSXF = 139;
-Imax_MCDXF  = 139;
-Imax_MCTXF  = 167;
-Imax_MCTSXF = 157;
+Imax_MCBXFA =1584; !I 1402 (0)
+Imax_MCBXFB =1625; !I 1474 (O)
+Imax_MQSXF  = 174;
+Imax_MCSSXF =  99;
+Imax_MCSXF  =  99;
+Imax_MCOSXF = 102;
+Imax_MCOXF  = 102;
+Imax_MCDSXF =  92;
+Imax_MCDXF  =  92;
+Imax_MCTXF  =  85;
+Imax_MCTSXF =  84;
 
 ! cabling
 MCBXFAH, Kmax:=Kmax_MCBXFA, Kmin:=Kmin_MCBXFA;
@@ -656,56 +654,36 @@ exec,install_ir15_cmn(MCSSXF.3,  posMCSSXF ); !a3
 ! D1 area
 !===============================================
 
+! MCSSXF | .5} .1 {.5 D1 .5} 1 DFXJ
+
 ! separation recombination dipoles
-!if (l.MBXF==0) {l.MBXF= 6.27;};
 !l.MBXF= 6.69;
 !l.MBXF= 6.36;
 !l.MBXF= 6.27;
 MBXF : RBEND,   L := l.MBXF ;  ! D1
-!BPMWC: MONITOR, L := l.BPMWC;  ! bpm in D1
-
-! service module for current distribution in the non-IP side of D1
-l.DFXJ = 3.658;    ! not finalized
-!DFXJ : PLACEHOLDER, L:= l.DFXJ;
-DFXJ : MARKER, L:= 0;
-
-! Layout
-! MCSSXF | .5} .1 {.5 D1 .5} 1 DFXJ
-
-!posD1 := posMCSSXF+(l.MBXF+l.MCSSXF)/2.+2;
-posD1 = posQ3b+(l.MQXFA+l.MBXF)/2+1.047+7.954+1.050;
-posVMBXF = 82.386; !start at 81.826
-!posVMBXF = 81.826; !start at 81.826
-
-posDFXJ := 82.127+l.DFXJ/2;
-!posBPMWC := posD1 + l.MBXF/2 + 0.90; ! to be checked with long range
-
-! Separation recombination dipoles
-
 MBXF.4L1: MBXF,angle:= ad1.lr1, K0 := kd1.lr1, polarity=+1 *bv_aux;
 MBXF.4R1: MBXF,angle:=-ad1.lr1, K0 :=-kd1.lr1, polarity=-1 *bv_aux;
 MBXF.4L5: MBXF,angle:= ad1.lr5, K0 := kd1.lr5, polarity=+1 *bv_aux;
 MBXF.4R5: MBXF,angle:=-ad1.lr5, K0 :=-kd1.lr5, polarity=-1 *bv_aux;
+posD1 = posQ3b+(l.MQXFA+l.MBXF)/2+1.047+7.954+1.050;
+! MBXF cryostat ends ay 82.700
+! MBXF cold madd ends at 81.467
 
-VMBXF.4L1: marker;
-VMBXF.4R1: marker;
-VMBXF.4L5: marker;
-VMBXF.4R5: marker;
+! service module for current distribution in the non-IP side of D1
+l.DFXJ = 3.658;    ! not finalized
+DFXJ : MARKER, L:= 0;
+posDFXJ := 83.142+l.DFXJ/2; !mid of vacuum modules
+DFXJ.4L1: DFXJ; DFXJ.4R1: DFXJ; DFXJ.4L5: DFXJ; DFXJ.4R5: DFXJ;
+
+posVMBXF = 81.826; !end triplet screen
+posVMBXFA= 81.836; !start new beam screen
+posVMBXFB= 82.386; !end beam screen
+
+VMBXF.4L1: marker; VMBXF.4R1: marker; VMBXF.4L5: marker; VMBXF.4R5: marker;
+VMBXFA.4L1: marker; VMBXFA.4R1: marker; VMBXFA.4L5: marker; VMBXFA.4R5: marker;
+VMBXFB.4L1: marker; VMBXFB.4R1: marker; VMBXFB.4L5: marker; VMBXFB.4R5: marker;
 
 
-!BPMWC.4L1.B1: BPMWC;
-!BPMWC.4R1.B1: BPMWC;
-!BPMWC.4L5.B1: BPMWC;
-!BPMWC.4R5.B1: BPMWC;
-!BPMWC.4L1.B2: BPMWC;
-!BPMWC.4R1.B2: BPMWC;
-!BPMWC.4L5.B2: BPMWC;
-!BPMWC.4R5.B2: BPMWC;
-
-DFXJ.4L1: DFXJ;
-DFXJ.4R1: DFXJ;
-DFXJ.4L5: DFXJ;
-DFXJ.4R5: DFXJ;
 
 
 ! D1
@@ -713,6 +691,8 @@ DFXJ.4R5: DFXJ;
 exec,install_ir15_cmn(MBXF.4,  posD1);
 exec,install_ir15_cmn(DFXJ.4,  posDFXJ);
 exec,install_ir15_cmn(VMBXF.4, posVMBXF);
+exec,install_ir15_cmn(VMBXFA.4, posVMBXFA);
+exec,install_ir15_cmn(VMBXFB.4, posVMBXFB);
 
 !===============================================
 !BPM triplet D1
@@ -725,7 +705,7 @@ exec,install_ir15_cmn(VMBXF.4, posVMBXF);
 
 ! BMPSQW is between TAS and Q1
 l.BPMSQ  = 0.2*0; !needs zero lengths BPMs
-l.BPMSQW = 0.2*0;
+l.BPMSQW = 0.285*0; !needs zero lengths BPMs
 BPMSQ :  MONITOR,    L := l.BPMSQ;  ! bpm in the triplets
 BPMSQT:  MONITOR,    L := l.BPMSQ;  ! bpm in the triplets with W insert
 BPMSQW:  MONITOR,    L := l.BPMSQW; ! bpm in the triplets warm
@@ -736,7 +716,8 @@ posBPM3  := posQ2a + l.MQXFB/2 + 1.054+0.100;!BPMSQT.B2R5.B1
 posBPM4  := posQ3a - l.MQXFA/2 - 1.047+0.100;!BPMSQ.A3R5.B1
 posBPM5  := posQ3b + l.MQXFA/2 + 1.047+0.100;!BPMSQ.B3R5.B1
 posBPM6  := posD1  - l.MBXF/2  - 1.050+0.100;!BPMSQ.4R5.B1
-posBPM7  := posD1  + l.MBXF/2  + 1.050+3.658+0.928+0.150+0.142 ;!BPMSQW.B4R5.B1 87.89=3.74*23.5
+posBPM7  := posD1  + l.MBXF/2  + 0.550 +1.233+0.884+0.285/2 ; ! mag+cold mass+cryostat+vac+bpm
+! posBPM7 83.7265, best location 84.150
 
 value, posBPM1,posBPM2,posBPM3,posBPM4,posBPM5,posBPM6,posBPM7;
 
@@ -787,14 +768,6 @@ exec,install_ir15_b12(BPMSQW.4 ,  posBPM7   );
 ! D2 area
 !===============================================
 
-!  TAN TCTV TCTH TCL BPMWQ 1.835 (left)
-!  TAN TCL           BPMWQ 1.835 (right)
-!  {.4 D2 .4 MCBRDH .4 MCBRDV .4}
-!  B1-> 0.5 { 1.3 1.3  CRAB 2.6  CRAB 2.6  CRAB 1.3 } 2.69 | MCBYY
-!  B2<- 0.5 { 1.3 CRAB 2.6  CRAB 2.6  CRAB 1.3  1.3 } 2.69 | MCBYY
-
-
-
 ! D2
 !l.MBRD=10;
 !if (l.MBRD==0) {l.MBRD=7.8;};
@@ -804,19 +777,22 @@ MBRD  : RBEND  ,   L := l.MBRD ;  ! D2
 MCBRDH: HKICKER,   L := l.MCBRD; ! long for crabs in D2 cryostats
 MCBRDV: VKICKER,   L := l.MCBRD; ! long for crabs in D2 cryostats
 BPMWQ : MONITOR,   L := l.BPMWQ;  ! bpm in D2
+VMBRDA: MARKER,   L=0; ! end b.s. IP side
+VMBRDB: MARKER,   L=0; ! end b.s. non-IP side
 
 posD2  := 157.9+deltaposD2; ! minimize distance D1-D2, maximum field 35 Tm
 !posD2  = 157.9-8-7;     ! from V6.503
 ! 8 to fit two cavitities with 1.5 meter at 163
 !11 to fit three cavitities with 1.5 meter
 
-
 posMCBRDA  := posD2 + l.MBRD/2 + l.MCBRD/2 + 0.365 + deltaposMCBRD;
 posMCBRDB  := posMCBRDA + l.MCBRD          + 0.365 ;
 
-posBPMWQ  := posD2-l.MBRD/2-0.983-0.702-0.285/2 + deltaposTAXN;!BPMWQ.4R5.B1
-sepBPMWQ  := round((posBPMWQ-posD1)/(posD2-posD1)*194)/1e3;
-
+posVMBRDA  :=  posD2-l.MBRD/2-0.983+0.208; !end b.s. IP side
+posVMBRDB  :=  posMCBRDB+l.MCBRD/2+0.819; !end b.s. non-IP side
+sepVMBRDA  := 0.188; sepVMBRDB  := 0.188;
+posBPMWQ  := posVMBRDB+0.300/2;
+sepBPMWQ  := 0.188; !tentative
 
 MBRD.4L1.B1: MBRD, angle:=-ad2.l1, K0:=-kd2.l1, polarity=-1, mech_sep=-0.1880;
 MBRD.4R1.B1: MBRD, angle:= ad2.r1, K0:= kd2.r1, polarity=+1, mech_sep= 0.1880;
@@ -845,8 +821,23 @@ MCBRDV.4R1.B2: MCBRDV, kick:=-acbrdv4.r1b2*bv_aux, mech_sep=-0.1880*bv_aux;
 MCBRDV.4L5.B2: MCBRDV, kick:=-acbrdv4.l5b2*bv_aux, mech_sep= 0.1880*bv_aux;
 MCBRDV.4R5.B2: MCBRDV, kick:=-acbrdv4.r5b2*bv_aux, mech_sep=-0.1880*bv_aux;
 
+VMBRDA.4L1.B1: BPMWQ, mech_sep=-sepVMBRDA;
+VMBRDA.4R1.B1: BPMWQ, mech_sep= sepVMBRDA;
+VMBRDA.4L5.B1: BPMWQ, mech_sep=-sepVMBRDA;
+VMBRDA.4R5.B1: BPMWQ, mech_sep= sepVMBRDA;
+VMBRDA.4L1.B2: BPMWQ, mech_sep= sepVMBRDA*bv_aux;
+VMBRDA.4R1.B2: BPMWQ, mech_sep=-sepVMBRDA*bv_aux;
+VMBRDA.4L5.B2: BPMWQ, mech_sep= sepVMBRDA*bv_aux;
+VMBRDA.4R5.B2: BPMWQ, mech_sep=-sepVMBRDA*bv_aux;
 
-
+VMBRDB.4L1.B1: BPMWQ, mech_sep=-sepVMBRDB;
+VMBRDB.4R1.B1: BPMWQ, mech_sep= sepVMBRDB;
+VMBRDB.4L5.B1: BPMWQ, mech_sep=-sepVMBRDB;
+VMBRDB.4R5.B1: BPMWQ, mech_sep= sepVMBRDB;
+VMBRDB.4L1.B2: BPMWQ, mech_sep= sepVMBRDB*bv_aux;
+VMBRDB.4R1.B2: BPMWQ, mech_sep=-sepVMBRDB*bv_aux;
+VMBRDB.4L5.B2: BPMWQ, mech_sep= sepVMBRDB*bv_aux;
+VMBRDB.4R5.B2: BPMWQ, mech_sep=-sepVMBRDB*bv_aux;
 
 BPMWQ.4L1.B1: BPMWQ, mech_sep=-sepBPMWQ;
 BPMWQ.4R1.B1: BPMWQ, mech_sep= sepBPMWQ;
@@ -878,21 +869,31 @@ value, ad1.lr1,l.MBXF,ad1.lr1/l.MBXF*brho,ad1.lr1*brho;
 value, ad2.l1,l.MBRD,ad2.l1/l.MBRD*brho,ad2.l1*brho;
 
 ! D2
-exec,install_ir15_b12(MBRD.4   , posD2    );
+exec,install_ir15_b12(MBRD.4 , posD2   );
 exec,install_ir15_b12(BPMWQ.4, posBPMWQ);
 
+! email arnaud 8/3/2019,
+! B2  =V||H=    =V||H= B1 (ext)
+! B1  =H||V=    =H||V= B2 (int)
+! MCB%A(L) MCB%A(R) MCB%A(L) MCB%A(R)
+! herve 18/2/2019
+! MCB%A(R) = MCB%H ext + MCB%V int
+! MCB%B(R) = MCB%V ext + MCB%H int
+! MCB%A(L) = MCB%V ext + MCB%H int
+! MCB%B(L) = MCB%H ext + MCB%V int
+
+if (cut_mcbrd==0){
 !IP - D2 posMCBRDA posMCBRDB
 ! orientation:
 ! b1: h v - IP - v h
 ! b2: v h - IP - h v
-!exec,install_ir15_b1_b2(MCBRDV.4,posMCBRDA,posMCBRDB);
-!exec,install_ir15_b1_b2(MCBRDH.4,posMCBRDB,posMCBRDA);
+exec,install_ir15_b1_b2(MCBRDV.4,posMCBRDA,posMCBRDB);
+exec,install_ir15_b1_b2(MCBRDH.4,posMCBRDB,posMCBRDA);
 ! orientation:
 ! b1: h v - IP - h v
 ! b2: v h - IP - v h
-if (cut_mcbrd==0){
-exec,install_ir15_b1_b2_alt(MCBRDV.4,posMCBRDA,posMCBRDB);
-exec,install_ir15_b1_b2_alt(MCBRDH.4,posMCBRDB,posMCBRDA);
+!exec,install_ir15_b1_b2_alt(MCBRDV.4,posMCBRDA,posMCBRDB);
+!exec,install_ir15_b1_b2_alt(MCBRDH.4,posMCBRDB,posMCBRDA);
 };
 
 !===============================================
@@ -1378,88 +1379,60 @@ exec,_crab_make_rf(NNN,r,1,b1,FFF);
 exec,_crab_make_rf(NNN,r,1,b2,FFF);
 };
 
+!PF1 Position IP side (front) Point 1
+!PB1 Position nonIP side (back) Point 1
 
-crab_install(NNN,PFFF,PBBB): macro ={
-value,PFFF,PBBB;
+crab_install(NNN,P1B1,P1B2,P5B1,P5B2): macro ={
 if(bv_aux == 1){
 seqedit, sequence=lhcb1;
-install,element=acfca.NNNl5.b1,at=-PBBB,from=IP5;
-install,element=acfca.NNNr5.b1,at= PFFF,from=IP5;
-install,element=acfca.NNNl1.b1,at=-PBBB,from=IP1.L1;
-install,element=acfca.NNNr1.b1,at= PFFF,from=IP1;
-install,element=vacfca.NNNl5.b1,at=-PFFF,from=IP5;
-install,element=vacfca.NNNr5.b1,at= PBBB,from=IP5;
-install,element=vacfca.NNNl1.b1,at=-PFFF,from=IP1.L1;
-install,element=vacfca.NNNr1.b1,at= PBBB,from=IP1;
+install,element=acfca.NNNl5.b1,at=-P5B1,from=IP5;
+install,element=acfca.NNNr5.b1,at= P5B1,from=IP5;
+install,element=acfca.NNNl1.b1,at=-P1B1,from=IP1.L1;
+install,element=acfca.NNNr1.b1,at= P1B1,from=IP1;
+install,element=vacfca.NNNl5.b1,at=-P1B1,from=IP5;
+install,element=vacfca.NNNr5.b1,at= P5B1,from=IP5;
+install,element=vacfca.NNNl1.b1,at=-P1B1,from=IP1.L1;
+install,element=vacfca.NNNr1.b1,at= P1B1,from=IP1;
 endedit;
 };
 seqedit, sequence=lhcb2;
-install,element=acfca.NNNl5.b2,at=-PFFF*bv_aux,from=IP5;
-install,element=acfca.NNNr5.b2,at= PBBB*bv_aux,from=IP5;
-install,element=acfca.NNNl1.b2,at=-PFFF*bv_aux,from=IP1.L1;
-install,element=acfca.NNNr1.b2,at= PBBB*bv_aux,from=IP1;
-install,element=vacfca.NNNl5.b2,at=-PBBB*bv_aux,from=IP5;
-install,element=vacfca.NNNr5.b2,at= PFFF*bv_aux,from=IP5;
-install,element=vacfca.NNNl1.b2,at=-PBBB*bv_aux,from=IP1.L1;
-install,element=vacfca.NNNr1.b2,at= PFFF*bv_aux,from=IP1;
+install,element=acfca.NNNl5.b2,at=-P5B2*bv_aux,from=IP5;
+install,element=acfca.NNNr5.b2,at= P5B2*bv_aux,from=IP5;
+install,element=acfca.NNNl1.b2,at=-P1B2*bv_aux,from=IP1.L1;
+install,element=acfca.NNNr1.b2,at= P1B2*bv_aux,from=IP1;
+install,element=vacfca.NNNl5.b2,at=-P1B2*bv_aux,from=IP5;
+install,element=vacfca.NNNr5.b2,at= P5B2*bv_aux,from=IP5;
+install,element=vacfca.NNNl1.b2,at=-P1B2*bv_aux,from=IP1.L1;
+install,element=vacfca.NNNr1.b2,at= P1B2*bv_aux,from=IP1;
 endedit;
 };
 
-crab_installhv(NNN,PFFF,PBBB): macro ={
-value,PFFF,PBBB;
+
+crab_install_cc(NNN,P1B1,P1B2,P5B1,P5B2): macro ={
 if(bv_aux == 1){
 seqedit, sequence=lhcb1;
-install,element=acfcah.NNNl5.b1,at=-PBBB,from=IP5;
-install,element=acfcah.NNNr5.b1,at= PFFF,from=IP5;
-install,element=acfcah.NNNl1.b1,at=-PBBB,from=IP1.L1;
-install,element=acfcah.NNNr1.b1,at= PFFF,from=IP1;
-install,element=acfcav.NNNl5.b1,at=-PBBB,from=IP5;
-install,element=acfcav.NNNr5.b1,at= PFFF,from=IP5;
-install,element=acfcav.NNNl1.b1,at=-PBBB,from=IP1.L1;
-install,element=acfcav.NNNr1.b1,at= PFFF,from=IP1;
+install,element=acfcah.NNNl5.b1,at=-P5B1,from=IP5;
+install,element=acfcah.NNNr5.b1,at= P5B1,from=IP5;
+install,element=acfcah.NNNl1.b1,at=-P1B1,from=IP1.L1;
+install,element=acfcah.NNNr1.b1,at= P1B1,from=IP1;
+install,element=acfcav.NNNl5.b1,at=-P5B1,from=IP5;
+install,element=acfcav.NNNr5.b1,at= P5B1,from=IP5;
+install,element=acfcav.NNNl1.b1,at=-P1B1,from=IP1.L1;
+install,element=acfcav.NNNr1.b1,at= P1B1,from=IP1;
 endedit;
 };
 seqedit, sequence=lhcb2;
-install,element=acfcah.NNNl5.b2,at=-PFFF*bv_aux,from=IP5;
-install,element=acfcah.NNNr5.b2,at= PBBB*bv_aux,from=IP5;
-install,element=acfcah.NNNl1.b2,at=-PFFF*bv_aux,from=IP1.L1;
-install,element=acfcah.NNNr1.b2,at= PBBB*bv_aux,from=IP1;
-install,element=acfcav.NNNl5.b2,at=-PFFF*bv_aux,from=IP5;
-install,element=acfcav.NNNr5.b2,at= PBBB*bv_aux,from=IP5;
-install,element=acfcav.NNNl1.b2,at=-PFFF*bv_aux,from=IP1.L1;
-install,element=acfcav.NNNr1.b2,at= PBBB*bv_aux,from=IP1;
+install,element=acfcah.NNNl5.b2,at=-P5B2*bv_aux,from=IP5;
+install,element=acfcah.NNNr5.b2,at= P5B2*bv_aux,from=IP5;
+install,element=acfcah.NNNl1.b2,at=-P1B2*bv_aux,from=IP1.L1;
+install,element=acfcah.NNNr1.b2,at= P1B2*bv_aux,from=IP1;
+install,element=acfcav.NNNl5.b2,at=-P5B2*bv_aux,from=IP5;
+install,element=acfcav.NNNr5.b2,at= P5B2*bv_aux,from=IP5;
+install,element=acfcav.NNNl1.b2,at=-P1B2*bv_aux,from=IP1.L1;
+install,element=acfcav.NNNr1.b2,at= P1B2*bv_aux,from=IP1;
 endedit;
 };
 
-
-
-
-
-
-crab_removehv(NNN): macro ={
-if(bv_aux == 1){
-seqedit, sequence=lhcb1;
-remove,element=acfcah.NNNl5.b1;
-remove,element=acfcah.NNNr5.b1;
-remove,element=acfcah.NNNl1.b1;
-remove,element=acfcah.NNNr1.b1;
-remove,element=acfcav.NNNl5.b1;
-remove,element=acfcav.NNNr5.b1;
-remove,element=acfcav.NNNl1.b1;
-remove,element=acfcav.NNNr1.b1;
-endedit;
-};
-seqedit, sequence=lhcb2;
-remove,element=acfcah.NNNl5.b2;
-remove,element=acfcah.NNNr5.b2;
-remove,element=acfcah.NNNl1.b2;
-remove,element=acfcah.NNNr1.b2;
-remove,element=acfcav.NNNl5.b2;
-remove,element=acfcav.NNNr5.b2;
-remove,element=acfcav.NNNl1.b2;
-remove,element=acfcav.NNNr1.b2;
-endedit;
-};
 
 crab_remove(NNN): macro ={
 if(bv_aux == 1){
@@ -1468,6 +1441,14 @@ remove,element=acfca.NNNl5.b1;
 remove,element=acfca.NNNr5.b1;
 remove,element=acfca.NNNl1.b1;
 remove,element=acfca.NNNr1.b1;
+remove,element=acfcah.NNNl5.b1;
+remove,element=acfcah.NNNr5.b1;
+remove,element=acfcah.NNNl1.b1;
+remove,element=acfcah.NNNr1.b1;
+remove,element=acfcav.NNNl5.b1;
+remove,element=acfcav.NNNr5.b1;
+remove,element=acfcav.NNNl1.b1;
+remove,element=acfcav.NNNr1.b1;
 remove,element=vacfca.NNNl5.b1;
 remove,element=vacfca.NNNr5.b1;
 remove,element=vacfca.NNNl1.b1;
@@ -1479,6 +1460,14 @@ remove,element=acfca.NNNl5.b2;
 remove,element=acfca.NNNr5.b2;
 remove,element=acfca.NNNl1.b2;
 remove,element=acfca.NNNr1.b2;
+remove,element=acfcah.NNNl5.b2;
+remove,element=acfcah.NNNr5.b2;
+remove,element=acfcah.NNNl1.b2;
+remove,element=acfcah.NNNr1.b2;
+remove,element=acfcav.NNNl5.b2;
+remove,element=acfcav.NNNr5.b2;
+remove,element=acfcav.NNNl1.b2;
+remove,element=acfcav.NNNr1.b2;
 remove,element=vacfca.NNNl5.b2;
 remove,element=vacfca.NNNr5.b2;
 remove,element=vacfca.NNNl1.b2;
@@ -1486,57 +1475,29 @@ remove,element=vacfca.NNNr1.b2;
 endedit;
 };
 
-
 exec,crab_make_tkicker(A,2);
 exec,crab_make_tkicker(B,2);
-if (crabs_2==0){
-exec,crab_make_marker(C);
-exec,crab_make_marker(D);
-};
 
 exec,crab_make_vac_marker(A);
 exec,crab_make_vac_marker(B);
-if (crabs_2==0){
-exec,crab_make_vac_marker(C);
-exec,crab_make_vac_marker(D);
-};
 
 
 exec,crab_remove(A);
 exec,crab_remove(B);
-if (crabs_2==0){
-exec,crab_remove(C);
-exec,crab_remove(D);
-};
 
 
+! layout
+! B1 B2 IP B2 B1
 
-!  B1-> { 4.4 C 1.3 C 5.3 C 1.3 C 1   }
-!  B2<- { 1.0 C 1.3 C 5.3 C 1.3 C 4.4 }
+posRFDB2A=155.885; posDQWB2A=155.975;
+posRFDB2B=157.005; posDQWB2B=156.875;
+posRFDB1A=159.920; posDQWB1A=159.549;
+posRFDB1B=161.040; posDQWB1B=160.449;
 
-!position crab cavities as close as possible after D2
-!posCRAB   = posMCBRDB + l.MCBRD/2 + 3.222;
-!posCRABA1 = posCRAB+0    ;posCRABA2=posCRAB+ 3.400;
-!posCRABB1 = posCRAB+1.050;posCRABB2=posCRAB+ 4.450;
-!posCRABC1 = posCRAB+6.600;posCRABC2=posCRAB+10.00;
-!posCRABD1 = posCRAB+7.650;posCRABD2=posCRAB+11.05;
 
-posCRAB   = 153.942+deltaposCrab ; ! mechanical start 153.942 !posD2+11.429
-posCRABA1 = posCRAB+0.875;posCRABA2=posCRAB + 4.695;
-posCRABB1 = posCRAB+1.925 ;posCRABB2=posCRAB+ 5.745;
-posCRABC1 = posCRAB+8.315 ;posCRABC2=posCRAB+12.135;
-posCRABD1 = posCRAB+9.365 ;posCRABD2=posCRAB+13.185;
-
-value, posCRABA1,posCRABB1,posCRABC1,posCRABD1;
-value, posCRABA2,posCRABB2,posCRABC2,posCRABD2;
-
-!staggered
-exec,crab_install(A,posCRABA1,posCRABA2);
-exec,crab_install(B,posCRABB1,posCRABB2);
-if (crabs_2==0){
-exec,crab_install(C,posCRABC1,posCRABC2);
-exec,crab_install(D,posCRABD1,posCRABD2);
-};
+!staggered          IR1B1     IR1B2     IR5B1     IR5B2
+exec,crab_install(A,posRFDB1A,posRFDB2A,posDQWB1A,posDQWB2A);
+exec,crab_install(B,posRFDB1B,posRFDB2B,posDQWB1B,posDQWB2B);
 
 !===============================================
 ! Masks
@@ -1553,8 +1514,9 @@ l.TCLMC=1.0;
 !posTCLMC.6Q := posQ6 - dposMCBCH - l.TCLMC/2 - 1.831;
 !value,posTCLMC.5,posTCLMC.6C,posTCLMC.6Q;
 
-!posTCLMB.4C := posQ4 - 2.348-1.237-1.237-1.380-1.405;
-posTCLMB.4C := posQ4 - dposmcby.a4 - 3.4;! To be confirmed 5/9/2018 Marian
+! end q4   vac - tcl mech length     pos MCBY
+! 173022 - 759 - 1500/2 =171513      174939
+posTCLMB.4C := posQ4 - dposmcby.a4 - 3.426;! Integration meeting 18/1
 posTCLMC.5C := posQ5 - l.mqml/2-0.192-l.mcbch-0.926-1.405;
 posTCLMC.5Q := posQ5 - l.mqml/2-1.411-1.405;!- 5.216;
 posTCLMC.6C := posQ6 - l.mqml/2-0.192-l.mcbch-0.926-1.405;
@@ -1604,11 +1566,15 @@ if (L.TAXN==0) {L.TAXN=3.332;};
 ! slhc 1.275 closer to D2
 !D2 region, posBPMWQ = BPM right in front of D2
 
+! Gentini Option 2 (starts at 137340)
 
-posTCLX   := posD2-l.MBRD/2-0.983-1.933 + deltaposTAXN;
-posTCTXH  := posTCLX-1.757 ;
-posTCTPV   := posTCTXH-2.001 ;
-posTAXN   := posTCTPV-1.482-l.TAXN/2 ;
+posTCLX   := posD2-l.MBRD/2-0.983-1.590 + deltaposTAXN;
+posTCTXH  := posTCLX-1.556 ;
+posTCTPV   := posTCTXH-1.593 ;
+posTAXN   := posTCTPV-0.881-0.290-0.262-l.TAXN/2;
+!old layout TAXN non-ip side 128801+3332/2=130467
+!           TAXN flange non-ip side 137640-(1480+523+1476+281+1476+208+285+702+480)=130729
+!           TAXN flange 130729-130467 =  262
 
 posTAXNA  := posTAXN - L.TAXN/2;
 posTAXNB  := posTAXN + L.TAXN/2;
@@ -1627,7 +1593,7 @@ sepTAXNA  := round((posTAXN -posD1- L.TAXN/2)/(posD2-posD1)*194)/1e3;
 sepTAXNB  := round((posTAXN -posD1+ L.TAXN/2)/(posD2-posD1)*194)/1e3;
 
 value,posTAXN,posTCTPV,posTCTXH,posTCLX;
-value,sepTAXN, sepTAXNA, sepTAXNB, sepTCTV, sepTCTXH, sepTCLX;
+value,sepTAXN, sepTAXNA, sepTAXNB, sepTCTPV, sepTCTXH, sepTCLX;
 
 !Q5/Q6 region
 posTCL.5C := posQ5 - l.mqml/2-0.192-l.mcbch-0.926-1.405-2.010  ; !was 1.760

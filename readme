@@ -1,13 +1,42 @@
 Prerelease of HL-LHC version 1.5.
 
 Expected changes:
-- new TAXS position (difference IR1/IR5) [not implemented]
-- new name for the MQSFX [not implemented]
-
-- displacement D2
-- new TAXN position
-- new TCLMB position
+- new TAXS position (difference IR1/IR5) [todo]
 - new corrector package positions and magnetic lengths
+- distinct currents for MCBFX inner/outer coils [todo]
   https://edms.cern.ch/document/2114564/1   (currents)
-  https://edms.cern.ch/ui/file/1963788/1.1  (magnetic length)
-  https://indico.cern.ch/event/774098/contributions/3266218/attachments/1777272/2892101/Integration_meeting_11012019.pptx (positions)
+  https://edms.cern.ch/ui/file/1963788/1.2  (magnetic length)
+  https://indico.cern.ch/event/774098/contributions/3266218 (positions)
+- new D1 beam screen
+  https://indico.cern.ch/event/774103/contributions/3318047
+- new DFXJ position and length [todo]
+- new position BPM after D1
+  https://indico.cern.ch/event/774098/contributions/3266227
+- displacement D2 due to BPM
+    34.989 Tm to 35.151 Tm
+    new markers beg/end beam screen (208mm from flange non ip
+    mail 20/3/2019  Maria Amparo non-ip side
+    mail 20/2/2019  Jan Hansen ip-side
+- displacement D2 BPM
+    email 20/3/2019 Maria Amparo
+- MCBRDH/V ordering and positions
+  email arnaud 8/3/2019, herve 18/2/2019
+- new TAXN-TCL-TCO position
+  https://indico.cern.ch/event/774103/contributions/3318051
+  mail 13 March 2019 option 2
+  new tan specs [todo]
+  85 mm 18 sigma (13.5 sigma) , 14.2 sigma  (12.6)
+  80 mmm  16.7 sigma (13.5 sigma), 13.2 sigma  (12.6)
+  septaxn            = 0.156 ;
+  septaxna           = 0.151 ;
+  septaxnb           = 0.161 ;
+  septctpv           = 0.165 ;
+  septctxh           = 0.17 ;
+  septclx            = 0.175 ;
+
+- new crab positions
+  https://indico.cern.ch/event/797638/contributions/3314161
+- new TCLMB position
+  https://indico.cern.ch/event/774099/contributions/3280976
+
+- rephase crab cavities [todo]
