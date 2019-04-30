@@ -1,7 +1,7 @@
 Prerelease of HL-LHC version 1.5.
 
 Expected changes:
-- new TAXS position (difference IR1/IR5) [todo]
+- new TAXS position (difference in Point 1) [todo]
 - new corrector package positions and magnetic lengths
 - distinct currents for MCBFX inner/outer coils [todo]
   https://edms.cern.ch/document/2114564/1   (currents)

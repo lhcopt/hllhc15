@@ -1561,6 +1561,12 @@ exec,install_ir15_b1_b2_inv(TCLMC.6, posTCLMC.6C, posTCLMC.6Q );
 
 if (L.TAXN==0) {L.TAXN=3.332;};
 
+if (L.TCLX ==0) {L.TCLX  =1;};
+if (L.TCTXH==0) {L.TCTXH =1;};
+if (L.TCTPV==0) {L.TCTPV =1;};
+
+
+value,L.TAXN,L.TCLX,L.TCTXH,L.TCTPV;
 ! shielding collimation
 ! v6.503  10.425 ,   7.335 ,   5.655 ,   3.445 ,   2.0805
 ! slhc 1.275 closer to D2
@@ -1570,8 +1576,8 @@ if (L.TAXN==0) {L.TAXN=3.332;};
 
 posTCLX   := posD2-l.MBRD/2-0.983-1.590 + deltaposTAXN;
 posTCTXH  := posTCLX-1.556 ;
-posTCTPV   := posTCTXH-1.593 ;
-posTAXN   := posTCTPV-0.881-0.290-0.262-l.TAXN/2;
+posTCTPV  := posTCTXH-1.593 ;
+posTAXN   := posTCTPV-0.875-0.290-0.262-l.TAXN/2;
 !old layout TAXN non-ip side 128801+3332/2=130467
 !           TAXN flange non-ip side 137640-(1480+523+1476+281+1476+208+285+702+480)=130729
 !           TAXN flange 130729-130467 =  262
@@ -1585,15 +1591,30 @@ posTCTXHB  := posTCTXH + L.TCTXH/2;
 posTCTPVA  := posTCTPV - L.TCTPV/2;
 posTCTPVB  := posTCTPV + L.TCTPV/2;
 
-sepTCLX   := round((posTCLX -posD1)/(posD2-posD1)*194)/1e3;
-sepTCTXH  := round((posTCTXH-posD1)/(posD2-posD1)*194)/1e3;
-sepTCTPV  := round((posTCTPV-posD1)/(posD2-posD1)*194)/1e3;
-sepTAXN   := round((posTAXN -posD1)/(posD2-posD1)*194)/1e3;
-sepTAXNA  := round((posTAXN -posD1- L.TAXN/2)/(posD2-posD1)*194)/1e3;
-sepTAXNB  := round((posTAXN -posD1+ L.TAXN/2)/(posD2-posD1)*194)/1e3;
+sepTCLX   := round((posTCLX -posD1)/(posD2-posD1)*194*10)/1e4;
+sepTCTXH  := round((posTCTXH-posD1)/(posD2-posD1)*194*10)/1e4;
+sepTCTPV  := round((posTCTPV-posD1)/(posD2-posD1)*194*10)/1e4;
+sepTCLXA  := round((posTCLXA -posD1)/(posD2-posD1)*194*10)/1e4;
+sepTCTXHA := round((posTCTXHA-posD1)/(posD2-posD1)*194*10)/1e4;
+sepTCTPVA := round((posTCTPVA-posD1)/(posD2-posD1)*194*10)/1e4;
+sepTCLXB  := round((posTCLXB -posD1)/(posD2-posD1)*194*10)/1e4;
+sepTCTXHB := round((posTCTXHB-posD1)/(posD2-posD1)*194*10)/1e4;
+sepTCTPVB := round((posTCTPVB-posD1)/(posD2-posD1)*194*10)/1e4;
 
-value,posTAXN,posTCTPV,posTCTXH,posTCLX;
-value,sepTAXN, sepTAXNA, sepTAXNB, sepTCTPV, sepTCTXH, sepTCLX;
+sepTAXN   := round((posTAXN -posD1)/(posD2-posD1)*194)/1e3;
+sepTAXNA  := round((posTAXNA -posD1)/(posD2-posD1)*194)/1e3;
+sepTAXNB  := round((posTAXNB -posD1)/(posD2-posD1)*194)/1e3;
+
+value,posTAXN,posTAXNA,posTAXNB;
+value,posTCLX,posTCLXA,posTCLXB;
+value,posTCTXH,posTCTXHA,posTCTXHB;
+value,posTCTPV,posTCTPVA,posTCTPVB;
+
+value,sepTAXN,sepTAXNA,sepTAXNB;
+value,sepTCLX,sepTCLXA,sepTCLXB;
+value,sepTCTXH,sepTCTXHA,sepTCTXHB;
+value,sepTCTPV,sepTCTPVA,sepTCTPVB;
+
 
 !Q5/Q6 region
 posTCL.5C := posQ5 - l.mqml/2-0.192-l.mcbch-0.926-1.405-2.010  ; !was 1.760
@@ -1718,6 +1739,7 @@ TCTV.6R5.B2: TCTV, mech_sep=-0.194*bv_aux;
 
 l.BPTXaux=0.285;
 posBPTX=posTCLMB.4C-1.5/2-0.301-l.BPTXaux/2;
+posBPTX=165;
 
 
 APWL.4L1.B1: APWL, mech_sep=-0.194;
@@ -1731,6 +1753,7 @@ APWL.4R5.B2: APWL, mech_sep=-0.194*bv_aux;
 
 L.APWLaux=0.6;
 posAPWL1=posTCLMB.4C-1.5/2-0.301-0.285-1.002-L.APWLaux/2;
+posAPWL1=164.6;
 posAPWL2=posAPWL1-L.APWLaux ;
 
 exec,install_ir15_b1_b2(APWL.4,posAPWL1,posAPWL2);
@@ -1813,7 +1836,9 @@ install,element=BPTX.4R5.B2, at= posBPTX*bv_aux, from=IP5;
 
 mbh_rm_mcs=0; mbh_rm_mcdo=0; !=1 to remove spools
 mbh_ir2q8=0;mbh_ir2q10=0;
-mbh_ir7q8=1;mbh_ir7q10=0;
+mbh_ir7q8a=0; mbh_ir7q8b=0;
+mbh_ir7q9a=1; mbh_ir7q9b=0;
+mbh_ir7q10a=0; mbh_ir7q10b=0;
 mbh_ir1q8=0;mbh_ir1q9=0;mbh_ir1q10=0;
 mbh_ir5q8=0;mbh_ir5q9=0;mbh_ir5q10=0;
 
@@ -2024,6 +2049,14 @@ if (mbh_ir5q10>0){ exec,install_mbh(b,10,5,4,6); };
 
 if (mbh_ir7q8 >0){ exec,install_mbh(b,8 ,7,6,8); };
 if (mbh_ir7q10>0){ exec,install_mbh(b,10,7,6,8); };
+
+
+if (mbh_ir7q8a >0){ exec,install_mbh(a,8 ,7,6,8); };
+if (mbh_ir7q8b >0){ exec,install_mbh(b,8 ,7,6,8); };
+if (mbh_ir7q9a >0){ exec,install_mbh(a,9 ,7,6,8); };
+if (mbh_ir7q9b >0){ exec,install_mbh(b,9 ,7,6,8); };
+if (mbh_ir7q10a >0){ exec,install_mbh(a,10 ,7,6,8); };
+if (mbh_ir7q10b >0){ exec,install_mbh(b,10 ,7,6,8); };
 
 
 !end slhc/toolkit/install_mbh.madx

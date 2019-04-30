@@ -59,7 +59,7 @@ septan=0.145
 #septan2=0.0793*2
 septan1=0.161
 septan2=0.151
-ltan=3.332
+ltan=3.492
 
 #(0.142, 0.164)
 

@@ -4,11 +4,19 @@ system,"ln -fns /afs/cern.ch/eng/lhc/optics/HLLHCV1.5rc0 slhc";
 system,"ln -fns /afs/cern.ch/eng/lhc/optics/runIII lhc";
 
 Option, -echo,-warn,-info;
+call,file="lhc/aperture/const_for_aperture.madx";
 call,file="lhc/lhc.seq";
 call,file="slhc/toolkit/macro.madx";
 Option, -echo,warn,-info,no_fatal_stop;
 
 call,file="slhc/hllhc_sequence.madx";
+call,   file="lhc/aperture/aperture.b1.madx";
+call,   file="lhc/aperture/aperture.b2.madx";
+call,   file="lhc/aperture/aper_tol.b1.madx";
+call,   file="lhc/aperture/aper_tol.b2.madx";
+call,file="slhc/aperture/exp_pipe_model_after_LS3.madx";
+call,file="slhc/aperture/exp_pipe_install_after_LS3.madx";
+
 call,file="slhc/round/opt_round_150_1500.madx";
 
 exec,mk_beam(7000);
