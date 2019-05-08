@@ -16,6 +16,8 @@ call,   file="lhc/aperture/aper_tol.b1.madx";
 call,   file="lhc/aperture/aper_tol.b2.madx";
 call,file="slhc/aperture/exp_pipe_model_after_LS3.madx";
 call,file="slhc/aperture/exp_pipe_install_after_LS3.madx";
+call,file="slhc/aperture/aperture_upgrade_IT.madx";
+call,file="slhc/aperture/aperture_upgrade_MS.madx";
 
 call,file="slhc/round/opt_round_150_1500.madx";
 
