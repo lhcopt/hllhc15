@@ -71,12 +71,9 @@ value,tar_knob_ir8;
 
 value,
 tar_knob_ir1,
-tar_knob_cc1,
-tar_knob_cc5,
 tar_knob_ir2,
 tar_knob_ir5,
-tar_knob_ir8;
-
-
-
+tar_knob_ir8,
+tar_knob_cc1,
+tar_knob_cc5;
 

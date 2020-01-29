@@ -34,11 +34,13 @@ match, use_macro;
  vary,name=kq10.l6b1,   step=1.0E-6, lower=-qtlimit3, upper=-qtlimit3*scmin;
  vary,name=kq9.l6b1,    step=1.0E-6, lower= qtlimit3*scmin, upper= qtlimit3;
  vary,name=kq8.l6b1,    step=1.0E-6, lower=-qtlimit3, upper=-qtlimit3*scmin;
- vary,name=kq5.l6b1,    step=1.0E-6, lower= qtlimit3*scmin, upper= qtlimit3;
+if (no_match_q5l6==0){
+ vary,name=kq5.l6b1,    step=1.0E-6, lower= qtlimit5l*scmin, upper= qtlimit5l;
+};
 ! vary,name=kq4.l6b1,   step=1.0E-6, lower=-qtlimit2, upper=-qtlimit2*scmin;!fixed for septum
 
  vary,name=kq4.r6b1,    step=1.0E-6, lower= qtlimit2*scmin, upper= qtlimit2;
- vary,name=kq5.r6b1,    step=1.0E-6, lower=-qtlimit3, upper=-qtlimit3*scmin;
+ vary,name=kq5.r6b1,    step=1.0E-6, lower=-qtlimit5r, upper=-qtlimit5r*scmin;
  vary,name=kq8.r6b1,    step=1.0E-6, lower= qtlimit3*scmin, upper= qtlimit3;
  vary,name=kq9.r6b1,    step=1.0E-6, lower=-qtlimit3, upper=-qtlimit3*scmin;
  vary,name=kq10.r6b1,   step=1.0E-6, lower= qtlimit3*scmin, upper= qtlimit3;

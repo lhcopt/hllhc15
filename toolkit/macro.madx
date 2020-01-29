@@ -3117,9 +3117,9 @@ show,on_dsep1h,on_dsep1v,on_dsep5h,on_dsep5v;
 
 _save_optics_layout: macro={
 print, text="!***LAYOUT***";
-value, Lstar,l.MQXFA,l.MQXFB,l.MBXF,l.MBRD,l.MCBXFA,l.MCBXFB,l.MCBRD;
-value, dq1q2a,dq1aq1b,dq2aq2b,dq2bq3;
-value, deltaposD2,deltaposQ4,deltaposQ5,deltaposQ6;
+!value, Lstar,l.MQXFA,l.MQXFB,l.MBXF,l.MBRD,l.MCBXFA,l.MCBXFB,l.MCBRD;
+!value, dq1q2a,dq1aq1b,dq2aq2b,dq2bq3;
+!value, deltaposD2,deltaposQ4,deltaposQ5,deltaposQ6;
 value, on_cutMS.10F,on_cutMS.10D,on_cutMS.14F,on_cutMS.14D;
 value, is_thin;
 print, text="";

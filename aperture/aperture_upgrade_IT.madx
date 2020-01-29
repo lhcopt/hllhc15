@@ -123,20 +123,13 @@ exec, aperture_def(VMBXFB.4,   OCTAGON,     h_vd1,v_vd1,angle1_vd1,angle2_vd1, r
 
 exec, aperture_def(DFXJ.4,    RECTELLIPSE,  r_DFXJ,r_DFXJ,r_DFXJ,    r_DFXJ,     r_tol_DFXJ,h_tol_DFXJ,v_tol_DFXJ);
 
-!exec, aperture_2in1_def(BPMSQW.1 , RECTELLIPSE, r_BPMSQW, r_BPMSQW, r_BPMSQW, r_BPMSQW, r_tol_BPM, h_tol_BPM, v_tol_BPM);
-!exec, aperture_2in1_def(BPMSQ.1  , RECTELLIPSE, r_BPMSQ1 , r_BPMSQ1 , r_BPMSQ1 , r_BPMSQ1 , r_tol_BPM, h_tol_BPM, v_tol_BPM);
-!exec, aperture_2in1_def(BPMSQ.A2, RECTELLIPSE, r_BPMSQ , r_BPMSQ , r_BPMSQ , r_BPMSQ , r_tol_BPM, h_tol_BPM, v_tol_BPM);
-!exec, aperture_2in1_def(BPMSQT.B2, RECTELLIPSE, r_BPMSQ , r_BPMSQ , r_BPMSQ , r_BPMSQ , r_tol_BPM, h_tol_BPM, v_tol_BPM);
-!exec, aperture_2in1_def(BPMSQ.A3, RECTELLIPSE, r_BPMSQ , r_BPMSQ , r_BPMSQ , r_BPMSQ , r_tol_BPM, h_tol_BPM, v_tol_BPM);
-!exec, aperture_2in1_def(BPMSQ.B3 , RECTELLIPSE, r_BPMSQ , r_BPMSQ , r_BPMSQ , r_BPMSQ , r_tol_BPM, h_tol_BPM, v_tol_BPM);
-!exec, aperture_2in1_def(BPMSQ.4  , RECTELLIPSE, r_BPMSQ , r_BPMSQ , r_BPMSQ , r_BPMSQ , r_tol_BPM, h_tol_BPM, v_tol_BPM);
-!exec, aperture_2in1_def(BPMSQW.4  , RECTELLIPSE, r_BPMSQ4 , r_BPMSQ4 , r_BPMSQ4 , r_BPMSQ4 , r_tol_BPM, h_tol_BPM, v_tol_BPM);
+exec, aperture_2in1_def(BPMQSTZA.1 , OCTAGON,     h_q1 ,v_q1, angle1_q1 ,angle2_q1 , r_tol_Q1,h_tol_Q1,v_tol_Q1);
+exec, aperture_2in1_def(BPMQSTZB.A2, OCTAGON,     h_q23,v_q23,angle1_q23,angle2_q23, r_tol_Q3,h_tol_Q3,v_tol_Q3);
+exec, aperture_2in1_def(BPMQSTZB.B2,OCTAGON,     h_q23,v_q23,angle1_q23,angle2_q23, r_tol_Q3,h_tol_Q3,v_tol_Q3);
+exec, aperture_2in1_def(BPMQSTZB.A3, OCTAGON,     h_q23,v_q23,angle1_q23,angle2_q23, r_tol_Q3,h_tol_Q3,v_tol_Q3);
+exec, aperture_2in1_def(BPMQSTZB.B3, OCTAGON,     h_q23,v_q23,angle1_q23,angle2_q23, r_tol_Q3,h_tol_Q3,v_tol_Q3);
+exec, aperture_2in1_def(BPMQSTZB.4 ,  OCTAGON,     h_q23,v_q23,angle1_q23,angle2_q23, r_tol_Q3,h_tol_Q3,v_tol_Q3);
+exec, aperture_2in1_def(BPMQSTZW.4 , RECTELLIPSE, r_BPMSQ4W,r_BPMSQ4W,r_BPMSQ4W,r_BPMSQ4W,r_tol_BPM,h_tol_BPM,v_tol_BPM);
 
-exec, aperture_2in1_def(BPMSQW.1, OCTAGON,     h_q1 ,v_q1, angle1_q1 ,angle2_q1 , r_tol_Q1,h_tol_Q1,v_tol_Q1);
-exec, aperture_2in1_def(BPMSQ.1,  OCTAGON,     h_q23,v_q23,angle1_q23,angle2_q23, r_tol_Q3,h_tol_Q3,v_tol_Q3);
-exec, aperture_2in1_def(BPMSQ.A2, OCTAGON,     h_q23,v_q23,angle1_q23,angle2_q23, r_tol_Q3,h_tol_Q3,v_tol_Q3);
-exec, aperture_2in1_def(BPMSQT.B2,OCTAGON,     h_q23,v_q23,angle1_q23,angle2_q23, r_tol_Q3,h_tol_Q3,v_tol_Q3);
-exec, aperture_2in1_def(BPMSQ.A3, OCTAGON,     h_q23,v_q23,angle1_q23,angle2_q23, r_tol_Q3,h_tol_Q3,v_tol_Q3);
-exec, aperture_2in1_def(BPMSQ.B3, OCTAGON,     h_q23,v_q23,angle1_q23,angle2_q23, r_tol_Q3,h_tol_Q3,v_tol_Q3);
-exec, aperture_2in1_def(BPMSQ.4,  OCTAGON,     h_q23,v_q23,angle1_q23,angle2_q23, r_tol_Q3,h_tol_Q3,v_tol_Q3);
-exec, aperture_2in1_def(BPMSQW.4, RECTELLIPSE, r_BPMSQ4W,r_BPMSQ4W,r_BPMSQ4W,r_BPMSQ4W,r_tol_BPM,h_tol_BPM,v_tol_BPM);
+
+
