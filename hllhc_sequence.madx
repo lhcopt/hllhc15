@@ -334,7 +334,9 @@ newel_ir15_b12(ENAME,PARE): macro={
 !===============================================
 ! TAS
 !===============================================
-posTAXS  =19.950;
+!posTAXS  =19.950;
+posTAXS  =19.810; !joao different rotation
+
 l.TAXS  =1.8;
 
 TAXS: RCOLLIMATOR,  L := l.TAXS; ! new TAS
@@ -422,8 +424,8 @@ exec,install_ir15_cmn(MQXFA.B3,    posQ3b  );
 ! Q2a |.5 } 1 {.5 | Q2b | .489| MCBXFBb |.5 }
 ! Q2b |.489 | MCBXFBb |.1 } .1 {.5 | Q3 | .5}
 
-posMCBXFBa  := posQ2a     -(l.MQXFB + l.MCBXFB   )/2. -0.488;
-posMCBXFBb  := posQ2b     +(l.MQXFB + l.MCBXFB   )/2. +0.488;
+posMCBXFBa  := posQ2a     -(l.MQXFB + l.MCBXFB   )/2. -0.488; !0.498 TBC
+posMCBXFBb  := posQ2b     +(l.MQXFB + l.MCBXFB   )/2. +0.488; !0.498 TBC
 !value,l.MCBXFB, posMCBXFBa,posMCBXFBb;
 
 ! Cabling orbit corrector inside Q2a and Q2b cold masses
@@ -716,7 +718,8 @@ posBPM3  := posQ2a + l.MQXFB/2 + 1.054+0.100;!BPMSQT.B2R5.B1
 posBPM4  := posQ3a - l.MQXFA/2 - 1.047+0.100;!BPMSQ.A3R5.B1
 posBPM5  := posQ3b + l.MQXFA/2 + 1.047+0.100;!BPMSQ.B3R5.B1
 posBPM6  := posD1  - l.MBXF/2  - 1.050+0.100;!BPMSQ.4R5.B1
-posBPM7  := posD1  + l.MBXF/2  + 0.550 +1.233+0.884+0.285/2 ; ! mag+cold mass+cryostat+vac+bpm
+!posBPM7  := posD1  + l.MBXF/2  + 0.550 +1.233+0.884+0.285/2 ; ! mag+cold mass+cryostat+vac+bpm
+posBPM7  := posD1  + l.MBXF/2  + 0.550 +1.233+0.804+0.300/2 ; ! mag+cold mass+cryostat+vac+bpm
 ! posBPM7 83.7265, best location 84.150
 
 value, posBPM1,posBPM2,posBPM3,posBPM4,posBPM5,posBPM6,posBPM7;
