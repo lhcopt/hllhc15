@@ -52,8 +52,10 @@ if (bs_type == OCTA2015) {
   angle2_Q23:=atan(v_Q23/(sqrt(2)*r_Q23-v_Q23));
   value,r_Q23,g_Q23,angle1_Q23,angle2_Q23;
 
+  d1_newbs=1.5; ! first guess
+
   r_VD1:=(110.7/2-2.2*(1-no_bs_tol))/1e3; !C. Garion 30/11/2015 1.5 mech tol
-  h_VD1:=(119.7/2+1.5-2.2*(1-no_bs_tol))/1e3; !C. Garion 30/11/2015 1.5 mech tol
+  h_VD1:=(119.7/2+d1_newbs-2.2*(1-no_bs_tol))/1e3; !C. Garion 30/11/2015 1.5 mech tol
   v_VD1:=(119.7/2-2.2*(1-no_bs_tol))/1e3; !C. Garion 30/11/2015 1.5 mech tol
   angle1_VD1:=atan((sqrt(2)*r_VD1-h_VD1)/h_VD1);
   angle2_VD1:=atan(v_VD1/(sqrt(2)*r_VD1-v_VD1));
