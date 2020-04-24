@@ -276,6 +276,7 @@ install_ir15_b1_b2_inv(ENAME,SPOS1,SPOS2): macro={
 install_ir15_b1_b2_alt(ENAME,SPOS1,SPOS2): macro={
 ! position b1: spos1 - IP1 - spos2  spos1 - IP5 - spos2
 ! position b2: spos2 - IP1 - spos1  spos2 - IP5 - spos1
+        print, text=ENAME;
         value,SPOS1,SPOS2;
         if(bv_aux == 1){
                 seqedit,sequence=lhcb1;
@@ -900,8 +901,8 @@ if (cut_mcbrd==0){
 ! orientation:
 ! b1: h v - IP - v h
 ! b2: v h - IP - h v
-exec,install_ir15_b1_b2_alt(MCBRDV.4,posMCBRDA,posMCBRDB);
-exec,install_ir15_b1_b2_alt(MCBRDH.4,posMCBRDB,posMCBRDA);
+exec,install_ir15_b1_b2(MCBRDV.4,posMCBRDA,posMCBRDB);
+exec,install_ir15_b1_b2(MCBRDH.4,posMCBRDB,posMCBRDA);
 ! orientation:
 ! b1: h v - IP - h v
 ! b2: v h - IP - v h
