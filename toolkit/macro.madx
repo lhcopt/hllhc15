@@ -174,10 +174,12 @@ if(NIR ==8) {sec1:=78;sec2:=81;};
 
 mk_irtwiss(NIR,BIM): macro = {
 exec,adjsector(NIR);
-if (on_holdselect==0){ exec,select(NIR,$sec1,$sec2,BIM); };
+if (on_holdselect==0){
+ exec,select(NIR,$sec1,$sec2,BIM);
+ use,sequence=lhcBIM,range=s.ds.lNIR.BIM/e.ds.rNIR.BIM;
+};
 exec,twiss_opt;
-use,sequence=lhcBIM,range=s.ds.lNIR.BIM/e.ds.rNIR.BIM;
-twiss,beta0=birNIRBIM,save,file=twiss_irNIRBIM.tfs;
+twiss,sequence=lhcBIM,beta0=birNIRBIM,save,file=twiss_irNIRBIM.tfs;
 refbetxipNIRBIM=table(twiss,IPNIR,betx);
 refbetyipNIRBIM=table(twiss,IPNIR,bety);
 refalfxipNIRBIM=table(twiss,IPNIR,alfx);
@@ -297,9 +299,13 @@ exec,mk_beam(NRJ);
 
 value,NRJ,COmax,dPmax,emittance_norm,apbbeat,halor,halox,haloy,DParcx,DParcy;
 exec,adjsector(nir);
-exec,select(nir,$sec1,$sec2,bim);
+if (on_holdselect==0){
 
+exec,select(nir,$sec1,$sec2,bim);
 use,sequence=lhcbim,range=s.ds.lnir.bim/e.ds.rnir.bim;
+
+};
+
 survey,file=temp/survey_irnirbim.tfs;
 
 select,flag=twiss,clear;
@@ -310,14 +316,18 @@ select,flag=twiss,
               aptol_1,aptol_2,aptol_3,mech_sep,
               apoff_1,apoff_2,
        range=s.ds.lnir.bim/e.ds.rnir.bim;
-if(FULL==0)
-{use,sequence=lhcbim,range=s.ds.lnir.bim/e.ds.rnir.bim;
-twiss,beta0=birnirbim,file=temp/twiss_irnirbim.tfs;
+if(FULL==0) {
+  if (on_holdselect==0){
+     use,sequence=lhcbim,range=s.ds.lnir.bim/e.ds.rnir.bim;
+  };
+  twiss,beta0=birnirbim,file=temp/twiss_irnirbim.tfs;
 };
 
-if(FULL==1)
-{use,sequence=lhcbim;
-twiss,file=temp/twiss_irnirbim.tfs;
+if(FULL==1) {
+   if (on_holdselect==0){
+      use,sequence=lhcbim;
+   };
+   twiss,file=temp/twiss_irnirbim.tfs;
 };
 
 system, "cp lhc/aperture/offset.ip*b*.tfs  temp/";
@@ -1185,6 +1195,14 @@ refpxIP1BIM=table(twiss,IP1,px); refpyIP1BIM=table(twiss,IP1,py);
 refpxIP5BIM=table(twiss,IP5,px); refpyIP5BIM=table(twiss,IP5,py);
 refpxIP2BIM=table(twiss,IP2,px); refpyIP2BIM=table(twiss,IP2,py);
 refpxIP8BIM=table(twiss,IP8,px); refpyIP8BIM=table(twiss,IP8,py);
+refxIP3BIM=table(twiss,IP3,x); refyIP3BIM=table(twiss,IP3,y);
+refxIP4BIM=table(twiss,IP4,x); refyIP4BIM=table(twiss,IP4,y);
+refxIP6BIM=table(twiss,IP6,x); refyIP6BIM=table(twiss,IP6,y);
+refxIP7BIM=table(twiss,IP7,x); refyIP7BIM=table(twiss,IP7,y);
+refpxIP3BIM=table(twiss,IP3,px); refpyIP3BIM=table(twiss,IP3,py);
+refpxIP4BIM=table(twiss,IP4,px); refpyIP4BIM=table(twiss,IP4,py);
+refpxIP6BIM=table(twiss,IP6,px); refpyIP6BIM=table(twiss,IP6,py);
+refpxIP7BIM=table(twiss,IP7,px); refpyIP7BIM=table(twiss,IP7,py);
 value,refbetxIP1BIM,refbetyIP1BIM;
 value,refbetxIP5BIM,refbetyIP5BIM;
 value,refbetxIP2BIM,refbetyIP2BIM;
@@ -4851,8 +4869,14 @@ system,"rm tmp/optknob_*";
 check_ipknob(kkkk,irn,vvvv): macro={
 kkkkaux=kkkk;
 kkkk=vvvv;
+if (on_disp==0){
 exec,mk_irtwiss(irn,b1);
 exec,mk_irtwiss(irn,b2);
+} else {
+exec,check_ip(b1);
+exec,check_ip(b2);
+};
+
 show,refxipirnb1;
 show,refxipirnb2;
 show,refyipirnb1;
