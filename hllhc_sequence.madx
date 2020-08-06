@@ -1352,13 +1352,19 @@ vacfga.4NNNr5.b2: marker, mech_sep=-0.194*bv_aux;
 
 
 _crab_make_rf(NNN,SIDE,IRN,BIM,FFF): macro {
+    kn1_crabNNNSIDEIRNBIM:=ahcrab_sideirnbim/fff*cosiirn;
+    ks1_crabNNNSIDEIRNBIM:=avcrab_sideirnbim/fff*sinuirn;
     acfga.4NNNSIDEIRN.BIM: rfmultipole,l=0, freq=crabrf,
-    knl:={0,kn2_crabNNNSIDEIRNBIM,
-          kn3_crabNNNSIDEIRNBIM,kn4_crabNNNSIDEIRNBIM},
-    ksl:={0,ks2_crabNNNSIDEIRNBIM,
-          ks3_crabNNNSIDEIRNBIM,ks4_crabNNNSIDEIRNBIM},
-    pnl:={0,pn2_crabNNNSIDEIRNBIM,pn3_crabNNNSIDEIRNBIM,pn4_crabNNNSIDEIRNBIM},
-    psl:={0,ps2_crabNNNSIDEIRNBIM,ps3_crabNNNSIDEIRNBIM,ps4_crabNNNSIDEIRNBIM};
+    knl:={on_crabirn*kn1_crabNNNSIDEIRNBIM,
+          on_crabirn*kn2_crabNNNSIDEIRNBIM,
+          on_crabirn*kn3_crabNNNSIDEIRNBIM,
+          on_crabirn*kn4_crabNNNSIDEIRNBIM},
+    ksl:={on_crabirn*ks1_crabNNNSIDEIRNBIM,
+          on_crabirn*ks2_crabNNNSIDEIRNBIM,
+          on_crabirn*ks3_crabNNNSIDEIRNBIM,
+          on_crabirn*ks4_crabNNNSIDEIRNBIM},
+    pnl:={0.25,pn2_crabNNNSIDEIRNBIM,pn3_crabNNNSIDEIRNBIM,pn4_crabNNNSIDEIRNBIM},
+    psl:={0.25,ps2_crabNNNSIDEIRNBIM,ps3_crabNNNSIDEIRNBIM,ps4_crabNNNSIDEIRNBIM};
 };
 
 _crab_make_cc(nnn,side,irn,bim,fff): macro {
@@ -1581,7 +1587,7 @@ exec,install_ir15_b1_b2_inv(TCLMC.6, posTCLMC.6C, posTCLMC.6Q );
 !===============================================
 
 
-if (L.TAXN==0) {L.TAXN=3.492;};
+if (L.TAXN==0) {L.TAXN=3.332;};
 
 if (L.TCLPX ==0) {L.TCLPX  =1;};
 if (L.TCTPXH==0) {L.TCTPXH =1;};
@@ -1604,8 +1610,10 @@ posTAXN   := posTCTPXV-1.1625-0.183-l.TAXN/2;
 !           TAXN flange non-ip side 137640-(1480+523+1476+281+1476+208+285+702+480)=130729
 !           TAXN flange 130729-130467 =  262
 
-posTAXNA  := posTAXN - L.TAXN/2;
-posTAXNB  := posTAXN + L.TAXN/2;
+!posTAXNA  := posTAXN - L.TAXN/2;
+!posTAXNB  := posTAXN + L.TAXN/2;
+posTAXNA  := 127.812; ! J. Hansen 15/5/2020
+posTAXNB  := 131.144;
 posTCLPXA  := posTCLPX - L.TCLPX/2;
 posTCLPXB  := posTCLPX + L.TCLPX/2;
 posTCTPXHA  := posTCTPXH - L.TCTPXH/2;
@@ -1623,18 +1631,20 @@ sepTCLPXB  := round((posTCLPXB -posD1)/(posD2-posD1)*194*10)/1e4;
 sepTCTPXHB := round((posTCTPXHB-posD1)/(posD2-posD1)*194*10)/1e4;
 sepTCTPXVB := round((posTCTPXVB-posD1)/(posD2-posD1)*194*10)/1e4;
 
-sepTAXN   := round((posTAXN -posD1)/(posD2-posD1)*194)/1e3;
-sepTAXNA  := round((posTAXNA -posD1)/(posD2-posD1)*194)/1e3;
-sepTAXNB  := round((posTAXNB -posD1)/(posD2-posD1)*194)/1e3;
+sepTAXN   := round((posTAXN -posD1)/(posD2-posD1)*194*1e3)/1e6;
+sepTAXNA  := round((posTAXNA -posD1)/(posD2-posD1)*194*1e3)/1e6;
+sepTAXNB  := round((posTAXNB -posD1)/(posD2-posD1)*194*1e3)/1e6;
 
 value,posTAXN,posTAXNA,posTAXNB;
-value,posTCLPX,posTCLPXA,posTCLPXB;
-value,posTCTPXH,posTCTPXHA,posTCTPXHB;
-value,posTCTPXV,posTCTPXVA,posTCTPXVB;
-
 value,sepTAXN,sepTAXNA,sepTAXNB;
+
+value,posTCLPX,posTCLPXA,posTCLPXB;
 value,sepTCLPX,sepTCLPXA,sepTCLPXB;
+
+value,posTCTPXH,posTCTPXHA,posTCTPXHB;
 value,sepTCTPXH,sepTCTPXHA,sepTCTPXHB;
+
+value,posTCTPXV,posTCTPXVA,posTCTPXVB;
 value,sepTCTPXV,sepTCTPXVA,sepTCTPXVB;
 
 
@@ -1763,6 +1773,14 @@ TCTPV.6L5.B1: TCTPV, mech_sep=-0.194;
 TCTPH.6R5.B2: TCTPH, mech_sep=-0.194*bv_aux;
 TCTPV.6R5.B2: TCTPV, mech_sep=-0.194*bv_aux;
 
+BPTX.4L1.B1: BPTX, mech_sep=-0.194;
+BPTX.4L1.B2: BPTX, mech_sep= 0.194*bv_aux;
+BPTX.4L5.B1: BPTX, mech_sep=-0.194;
+BPTX.4L5.B2: BPTX, mech_sep= 0.194*bv_aux;
+BPTX.4R1.B1: BPTX, mech_sep= 0.194;
+BPTX.4R1.B2: BPTX, mech_sep=-0.194*bv_aux;
+BPTX.4R5.B1: BPTX, mech_sep= 0.194;
+BPTX.4R5.B2: BPTX, mech_sep=-0.194*bv_aux;
 
 l.BPTXaux=0.285;
 posBPTX=posTCLMB.4C-1.5/2-0.301-l.BPTXaux/2;
@@ -1924,8 +1942,8 @@ abh.airairn:=ab.airairn/2;   kbh.airairn:=abh.airairn/l.mbh;
 
 !tolerances from DS MB Q13-Q7
 mbh_shift=-(l.MBH/ab.a78*2*(1/cos(ab.a78/4)-1)+(0.7225*0.0051/4)); !sagitta + drift
-g_MBH=0.017150;
-r_MBH:=0.022;
+g_MBH:=0.017150;
+r_MBH:=0.022-mbh_shift;
 r_tol_MBH=0.0009;
 h_tol_MBH=0.0008;
 v_tol_MBH=0.0005;
@@ -2022,9 +2040,9 @@ remove,element=tcld.mbnrirn.b1  ;
 remove,element=e.tcld.mbnrirn.b1;
 remove,element=mbh.bmbnrirn.b1   ;
 remove,element=mbh.bmbnlirn.b1   ;
-remove,element=vtcld.mbnrirn.b1;
+remove,element=vtcld.mbnlirn.b1;
 install,element=mbh.ambnlirn.b1  ,at=pos_mbl-4.454,from=ipirn;
-install,element=vtcld.mbnrirn.b1 ,at=pos_mbl    ,from=ipirn;
+install,element=vtcld.mbnlirn.b1 ,at=pos_mbl    ,from=ipirn;
 install,element=mbh.bmbnlirn.b1  ,at=pos_mbl+4.454,from=ipirn;
 install,element=mbh.ambnrirn.b1  ,at=pos_mbr-4.454,from=ipirn;
 install,element=s.tcld.mbnrirn.b1,at=pos_mbr-0.5,from=ipirn;
@@ -2287,7 +2305,7 @@ endedit;
 
 seqedit,sequence=lhcb2;
 install,element=BGV.7L4.B2, at=-posBGV*bv_aux, from=IP4;
-install,element=BSRTD4.5R4.B2, at= posBSRTD4, from=IP4;
+install,element=BSRTD4.5R4.B2, at= posBSRTD4*bv_aux, from=IP4;
 endedit;
 
 ELENS.5L4.B1: marker;
