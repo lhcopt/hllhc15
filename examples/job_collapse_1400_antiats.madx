@@ -1,0 +1,31 @@
+system,"ln -fns /afs/cern.ch/eng/lhc/optics/HLLHCV1.5 slhc";
+system,"ln -fns /afs/cern.ch/eng/lhc/optics/runIII lhc";
+option, warn,info;
+
+
+Option, -echo,-warn,-info;
+call,file="lhc/lhc.seq";
+call,file="slhc/toolkit/macro.madx";
+Option, -echo,warn,-info;
+
+call,file="slhc/hllhc_sequence.madx";
+call,file="slhc/toolkit/enable_crabcavities.madx";
+call,file="slhc/ats/opt_ats_1400_500.madx";
+
+exec,mk_beam(7000);
+exec,check_ip(b1); exec,check_ip(b2);
+
+on_x1hs= 190; on_sep1h=0.85; on_sep1v=0.85;
+on_x2  =-170; on_sep2 =1.4;
+on_x5vs= 190; on_sep5h=0.85; on_sep5v=0.85;
+on_x8  =-200; on_sep8 =0.85;
+on_disp=0;
+
+exec,print_vcrab;
+on_crab1=-crabh_angle_max/2; on_crab5=-crabv_angle_max/2;
+value,on_crab1,on_crab5;
+
+VRF400:=16.;LAGRF400.B1=0.5;LAGRF400.B2=0.;
+
+exec,check_ip(b1); exec,check_ip(b2);
+

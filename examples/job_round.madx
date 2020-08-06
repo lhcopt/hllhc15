@@ -24,13 +24,10 @@ call,file="slhc/round/opt_round_150_1500.madx";
 exec,mk_beam(7000);
 exec,check_ip(b1); exec,check_ip(b2);
 
-on_sep1:=-0.75; on_x1:=250; phi_IR1:= 0.000 ; on_sol_atlas:=0 ;on_crab1:=0;
-on_sep5:= 0.75; on_x5:=250; phi_IR5:=90.000 ; on_sol_cms  :=0 ;on_crab5:=0;
-on_sep2:= 1; on_x2:= 170; on_a2=-0;on_alice:=7000/nrj; on_sol_alice:=0;
-on_sep8:= 1; on_x8:=-250; on_a8=-0;on_lhcb :=7000/nrj;
+on_sep1:=-0.55*0; on_x1:=250; phi_IR1:= 0.000 ; on_sol_atlas:=0 ;on_crab1:=0;
+on_sep5:= 0.55*0; on_x5:=250; phi_IR5:=90.000 ; on_sol_cms  :=0 ;on_crab5:=0;
+on_sep2:= 0.143; on_x2:= 170; on_a2=-0;on_alice:=7000/nrj; on_sol_alice:=0;
+on_sep8:= 0.043; on_x8:=-200; on_a8=-0;on_lhcb :=7000/nrj;
 on_disp=1;
 
 exec,check_ip(b1); exec,check_ip(b2);
-
-
-
