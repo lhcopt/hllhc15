@@ -83,8 +83,8 @@ tarsqueeze=tarir2b1+tarir4b1+tarir6b1+tarir8b1+
            tarir3b1+tarir7b1+tarir3b2+tarir7b2+
            tarir1b1+tarir5b1+tarir1b2+tarir5b2;
 
-value,tarsqueeze;
 exec,check_ip(b1); exec,check_ip(b2);
+value,tarsqueeze;
 
 if (tarsqueeze>1e-15 || match_optics_only==1){return;};
 
