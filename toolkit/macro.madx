@@ -4769,7 +4769,46 @@ value,v_crabv.r1b2;
 value,v_crabv.l5b1;
 value,v_crabv.l5b2;
 value,v_crabv.r5b1;
-value,v_crabv.r5b2;};
+value,v_crabv.r5b2;
+
+vcrabh_max=v_crabh.l1b1;
+vcrabv_max=v_crabv.l1b1;
+if (vcrabh_max<abs(v_crabh.l1b2)) {vcrabh_max=abs(v_crabh.l1b2);};
+if (vcrabh_max<abs(v_crabh.r1b1)) {vcrabh_max=abs(v_crabh.r1b1);};
+if (vcrabh_max<abs(v_crabh.r1b2)) {vcrabh_max=abs(v_crabh.r1b2);};
+if (vcrabh_max<abs(v_crabh.l5b1)) {vcrabh_max=abs(v_crabh.l5b1);};
+if (vcrabh_max<abs(v_crabh.l5b2)) {vcrabh_max=abs(v_crabh.l5b2);};
+if (vcrabh_max<abs(v_crabh.r5b1)) {vcrabh_max=abs(v_crabh.r5b1);};
+if (vcrabh_max<abs(v_crabh.r5b2)) {vcrabh_max=abs(v_crabh.r5b2);};
+if (vcrabv_max<abs(v_crabv.l1b2)) {vcrabv_max=abs(v_crabv.l1b2);};
+if (vcrabv_max<abs(v_crabv.r1b1)) {vcrabv_max=abs(v_crabv.r1b1);};
+if (vcrabv_max<abs(v_crabv.r1b2)) {vcrabv_max=abs(v_crabv.r1b2);};
+if (vcrabv_max<abs(v_crabv.l5b1)) {vcrabv_max=abs(v_crabv.l5b1);};
+if (vcrabv_max<abs(v_crabv.l5b2)) {vcrabv_max=abs(v_crabv.l5b2);};
+if (vcrabv_max<abs(v_crabv.r5b1)) {vcrabv_max=abs(v_crabv.r5b1);};
+if (vcrabv_max<abs(v_crabv.r5b2)) {vcrabv_max=abs(v_crabv.r5b2);};
+
+crabh_angle_max=3.4*4/vcrabh_max;
+crabv_angle_max=3.4*4/vcrabv_max;
+value,v_crabh.l1b1*crabh_angle_max/4;
+value,v_crabh.r1b1*crabh_angle_max/4;
+value,v_crabh.l1b2*crabh_angle_max/4;
+value,v_crabh.r1b2*crabh_angle_max/4;
+value,v_crabv.l1b1*crabv_angle_max/4;
+value,v_crabv.r1b1*crabv_angle_max/4;
+value,v_crabv.l1b2*crabv_angle_max/4;
+value,v_crabv.r1b2*crabv_angle_max/4;
+value,v_crabh.l5b1*crabh_angle_max/4;
+value,v_crabh.l5b2*crabh_angle_max/4;
+value,v_crabh.r5b1*crabh_angle_max/4;
+value,v_crabh.r5b2*crabh_angle_max/4;
+value,v_crabv.l5b1*crabv_angle_max/4;
+value,v_crabv.l5b2*crabv_angle_max/4;
+value,v_crabv.r5b1*crabv_angle_max/4;
+value,v_crabv.r5b2*crabv_angle_max/4;
+value,crabh_angle_max,crabv_angle_max;
+
+};
 
 print_orbit_knob_ip_knob(corrname,ccc,sss,irn): macro={
   printf,text="corrnamex = %20.10e ;",value=corrnamex;
@@ -4980,6 +5019,25 @@ exec,mkrbarc(d3.lr7,l.mbw  )    ;
 exec,mkrbarc(d4.lr7,l.mbw  )    ;
 exec,mkrbarc2(d1.l8 ,l.mbx  )    ;
 exec,mkrbarc2(d1.r8 ,l.mbx  )    ;
+};
+
+
+new_marker(lrh,nnn,iii,bim,ppp,bbb) : macro={
+  bbb.nnnlrhiii.bbim: marker;
+  install,element=bbb.nnnlrhiii.bbim,at= ppp,from=IPiii;
+};
+
+new_marker_set(iii,bim,lll,sep,bbb): macro={
+nnn=0;rpos=0;
+seqedit,sequence=lhcbbim;
+exec,new_marker(H,0,iii,bim,0);
+while(rpos<lll){
+  nnn=nnn+1;
+  lpos=-nnn*sep; rpos=nnn*sep;
+  exec,new_marker(L,$nnn,iii,bim,lpos,bbb);
+  exec,new_marker(R,$nnn,iii,bim,rpos,bbb);
+};
+endedit;
 };
 
 
