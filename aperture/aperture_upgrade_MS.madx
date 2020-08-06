@@ -73,8 +73,10 @@ g_D2=r_D2 - t_CT_D2;
 !r2_D2:=43.5-1.5*(1-no_bs_tol); !C. Garion 9/4/2015 3mm CB, 1.5mm mech tol
 !r1_D2:=38.5-1.5*(1-no_bs_tol)-2.5;  !C. Garion 30/11/2015 3mm CB, 1.5mm mech tol 100mm
 !r2_D2:=43-1.5*(1-no_bs_tol)-2.5;    !C. Garion 30/11/2015 3mm CB, 1.5mm mech tol 100mm
-r1_D2:=38.5-1.5*(1-no_bs_tol);  !C. Garion 30/11/2015 3mm CB, 1.5mm mech tol
-r2_D2:=43-1.5*(1-no_bs_tol);    !C. Garion 30/11/2015 3mm CB, 1.5mm mech tol
+!r1_D2:=38.5-1.5*(1-no_bs_tol);  !C. Garion 30/11/2015 3mm CB, 1.5mm mech tol
+!r2_D2:=43-1.5*(1-no_bs_tol);    !C. Garion 30/11/2015 3mm CB, 1.5mm mech tol
+r1_D2:=38.375-2.125*(1-no_bs_tol);  !N.Kos 29/5/2020 3mm CB, 1.5mm mech tol
+r2_D2:=43.325-1.975*(1-no_bs_tol);    !N.Kos 29/5/2020 3mm CB, 1.5mm mech tol
 
 r_D2=sqrt((sqrt(2)*r1_D2-r2_D2)^2+r2_D2^2)/1e3;
 g_D2=r1_D2/1e3;
