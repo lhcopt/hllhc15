@@ -16,7 +16,7 @@ exec,mk_beam(7000);
 exec,check_ip(b1); exec,check_ip(b2);
 
 on_x1hs= 190; on_sep1h=0.75; on_sep1v=0.75;
-o1n_x2  =-170; on_sep2 =1.4;
+on_x2  =-170; on_sep2 =1.4;
 on_x5vs= 190; on_sep5h=0.75; on_sep5v=0.75;
 on_x8  =-200; on_sep8 =0.85;
 
