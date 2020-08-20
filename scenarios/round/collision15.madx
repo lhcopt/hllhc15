@@ -7,7 +7,7 @@ call,file="slhc/round/opt_round_150_1500.madx";
 exec,mk_beam(7000);
 
 on_x1hs= 250; on_sep1h=0; on_sep1v=0;
-o1n_x2 =-170; on_sep2 =0;
+o1_x2  =-170; on_sep2 =0;
 on_x5vs= 250; on_sep5h=0; on_sep5v=0;
 on_x8  =-200; on_sep8 =0;
 
