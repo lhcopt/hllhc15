@@ -2,7 +2,7 @@ call,file="slhc/util/lhc.seq";
 call,file="slhc/toolkit/macro.madx";
 call,file="slhc/hllhc_sequence.madx";
 call,file="slhc/toolkit/enable_crabcavities.madx";
-call,file="slhc/round/opt_round_150_1500.madx";
+call,file="slhc/ramp/opt_inj_6000.madx";
 
 exec,mk_beam(450);
 
