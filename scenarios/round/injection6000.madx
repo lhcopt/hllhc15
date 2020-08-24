@@ -1,0 +1,18 @@
+call,file="slhc/util/lhc.seq";
+call,file="slhc/toolkit/macro.madx";
+call,file="slhc/hllhc_sequence.madx";
+call,file="slhc/toolkit/enable_crabcavities.madx";
+call,file="slhc/round/opt_round_150_1500.madx";
+
+exec,mk_beam(450);
+
+on_x1hs= 295; on_sep1h= 0  ; on_sep1v=  2;
+on_x2  =-170; on_sep2 = 3.5; on_a2   =-40;
+on_x5vs= 295; on_sep5h=-2  ; on_sep5v=  0;
+on_x8  =-170; on_sep8 =-3.5; on_a8   = 40;
+
+on_crab1=0; on_crab5=0;on_disp=0;
+
+on_alice=7000/nrj; on_lhcb=7000/nrj;
+
+VRF400:=8.;LAGRF400.B1=0.5;LAGRF400.B2=0.;
