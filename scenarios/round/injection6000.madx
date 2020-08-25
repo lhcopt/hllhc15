@@ -6,10 +6,20 @@ call,file="slhc/ramp/opt_inj_6000.madx";
 
 exec,mk_beam(450);
 
+
+
+
 on_x1hs= 295; on_sep1h= 0  ; on_sep1v=  2;
 on_x2  =-170; on_sep2 = 3.5; on_a2   =-40;
 on_x5vs= 295; on_sep5h=-2  ; on_sep5v=  0;
 on_x8  =-170; on_sep8 =-3.5; on_a8   = 40;
+
+qxb1  = 62.27; qyb1  = 60.295; qxb2  = 62.27; qyb2  = 60.295;
+qpxb1 = 20   ; qpyb1 = 20    ; qpxb2 = 20   ; qpyb2 = 20    ;
+
+call, file="slhc/toolkit/rematch_chroma.madx";
+call, file="slhc/toolkit/rematch_tune.madx";
+
 
 on_crab1=0; on_crab5=0;on_disp=0;
 
