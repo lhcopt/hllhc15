@@ -2,8 +2,8 @@ Optics for high energy with beta* in ip8=1.5m and various beta*/ATS factor in po
 
 opt_ats_xxxx_yyyy.madx
 
-xxxx is the final beta*
-yyyy is the beta* without ats.
+xxxx is the final beta* in [mm]
+yyyy is the beta* without ats in [mm]
 
 The ats factor is yyyy/xxxx. ats factor bigger than one reduces beta*, smaller than one increase beta*
 

@@ -1,0 +1,45 @@
+option, warn,info;
+system,"rm -rf temp"; system,"mkdir temp";
+system,"ln -fns /afs/cern.ch/eng/lhc/optics/HLLHCV1.5 slhc";
+system,"ln -fns /afs/cern.ch/eng/lhc/optics/runIII lhc";
+
+Option, -echo,-warn,-info;
+call,file="lhc/aperture/const_for_aperture.madx";
+call,file="lhc/lhc.seq";
+call,file="slhc/toolkit/macro.madx";
+Option, -echo,warn,-info,no_fatal_stop;
+
+call,file="slhc/hllhc_sequence.madx";
+call,   file="lhc/aperture/aperture.b1.madx";
+call,   file="lhc/aperture/aperture.b2.madx";
+call,   file="lhc/aperture/aper_tol.b1.madx";
+call,   file="lhc/aperture/aper_tol.b2.madx";
+call,file="slhc/aperture/exp_pipe_model_after_LS3.madx";
+call,file="slhc/aperture/exp_pipe_install_after_LS3.madx";
+call,file="slhc/aperture/aperture_upgrade_IT.madx";
+call,file="slhc/aperture/aperture_upgrade_MS.madx";
+
+call,file="slhc/round/opt_round_150_1500.madx";
+
+exec,mk_beam(7000);
+
+
+on_sep1:=-0.55*0; on_x1:=250; phi_IR1:= 0.000 ; on_sol_atlas:=0 ;on_crab1:=0;
+on_sep5:= 0.55*0; on_x5:=250; phi_IR5:=90.000 ; on_sol_cms  :=0 ;on_crab5:=0;
+on_sep2:= 0.143; on_x2:= 170; on_a2=-0;on_alice:=7000/nrj; on_sol_alice:=0;
+on_sep8:= 0.043; on_x8:=-200; on_a8=-0;on_lhcb :=7000/nrj;
+on_disp=1;
+
+
+exec,check_ip(b1); exec,check_ip(b2);
+
+use,sequence=lhcb1;
+select,flag=twiss,range=S.DS.L8.B1/E.DS.R8.B1;
+twiss,file="twiss_ir8b1.tfs";
+survey,file="survey_ir8b1.tfs";
+
+use,sequence=lhcb2;
+select,flag=twiss,range=S.DS.L8.B2/E.DS.R8.B2;
+twiss,file="twiss_ir8b2.tfs";
+survey,file="survey_ir8b2.tfs";
+
