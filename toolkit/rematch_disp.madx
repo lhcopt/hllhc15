@@ -136,14 +136,16 @@ mk_knob(irn,xxxx,ssss): macro={
   setvars_const,table=knob_on_dssss;
 
   exec,rematch_disp_irirnb1;
+  tar_dispb1_xxxx_ssss=tar;
   exec,rematch_disp_irirnb2;
+  tar_dispb2_xxxx_ssss=tar;
 
   fill,table=knob_on_dxxxx,scale=1/on_xxxx;
   fill,table=knob_on_dssss,scale=1/on_ssss;
   on_xxxx=0;  on_ssss=0;
 
-  tar_disp_xxxx_ssss=tar;
-  value,tar_disp_xxxx_ssss;
+  tar_disp_xxxx_ssss=tar_dispb1_xxxx_ssss+tar_dispb2_xxxx_ssss;
+  value,tar_dispb1_xxxx_ssss,tar_dispb2_xxxx_ssss,tar_disp_xxxx_ssss;
 
   setvars_const,table=knob_on_dxxxx;
   setvars_const,table=knob_on_dssss;

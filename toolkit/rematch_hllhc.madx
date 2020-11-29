@@ -109,4 +109,4 @@ call,file="slhc/toolkit/rematch_disp2.madx";
 call,file="slhc/toolkit/rematch_crabs.madx";
 call,file="slhc/toolkit/mk_arc_trims.madx";
 
-value,tarsqueeze, tar_xing_ir15, tar_xing_ir28;
+value,tarsqueeze, tar_xing_ir15, tar_xing_ir28, tar_on_disp;

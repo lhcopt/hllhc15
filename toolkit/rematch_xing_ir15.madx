@@ -51,6 +51,8 @@ use, sequence= lhcb2,range=s.ds.lirn.b2/e.ds.rirn.b2;
 xh=1e-6;xv=0;
 yh=0;yv=1e-6;
 
+acbxhv3.lirn=1e-6;
+
 match, sequence=lhcb1,lhcb2, beta0= birirnb1,birirnb2,
         x = 0.0, px = 0.0, y = 0.0, py = 0.0;
   constraint, sequence=lhcb1,range=ipirn, pxy =  xang*xyhv;
@@ -86,9 +88,9 @@ match, sequence=lhcb1,lhcb2, beta0= birirnb1,birirnb2,
   acbyhv4.rirnb1 :=acbyhvs4.rirnb1;
   acbyhv4.rirnb2 :=acbyhvs4.rirnb2;
 
-  jacobian, calls = 10, tolerance=1.e-30,bisec=3;
+  jacobian, calls = 10, tolerance=1.e-30,bisec=5;
   endmatch;
-  tar_on_xirnhv=tar;
+  tar_on_xirnhvnnn=tar;
   pxyipirnb1=  xang*xyhv;
   pxyipirnb2= -xang*xyhv;
 
@@ -244,8 +246,8 @@ match, sequence=lhcb1,lhcb2, beta0= birirnb1,birirnb2,
   vary,name=acbcv6.rirnb1 , step=1.0E-12,lower=-limitMCBC,upper=limitMCBC;
   vary,name=acbcv7.lirnb1, step=1.0E-12,lower=-limitMCBC,upper=limitMCBC;
   vary,name=acbcv7.rirnb2, step=1.0E-12,lower=-limitMCBC,upper=limitMCBC;
-  vary,name=acbyv5.lirnb1, step=1.0E-12,lower=-limitMCBC,upper=limitMCBC;
-  vary,name=acbyv5.rirnb2, step=1.0E-12,lower=-limitMCBC,upper=limitMCBC;
+  vary,name=acbcv5.lirnb1, step=1.0E-12,lower=-limitMCBC,upper=limitMCBC;
+  vary,name=acbcv5.rirnb2, step=1.0E-12,lower=-limitMCBC,upper=limitMCBC;
   };
   jacobian, calls = 10, tolerance=1.e-30,bisec=3;
   jacobian, calls = 10, tolerance=1.e-30,bisec=3;
@@ -359,10 +361,10 @@ match, sequence=lhcb1,lhcb2, beta0= birirnb1,birirnb2,
   constraint, sequence=lhcb2,range=ipirn, pxy  =  0, xy=0;
   constraint, sequence=lhcb1,range=e.ds.rirn.b1,xy = 0.0, pxy = 0.0;
   constraint, sequence=lhcb2,range=e.ds.rirn.b2,xy = 0.0, pxy = 0.0;
-  constraint, sequence=lhcb1,range=acfca.blirn.b1, xy  =  occp, pxy=0.0;
-  constraint, sequence=lhcb2,range=acfca.blirn.b2, xy  =  ocpp, pxy=0.0;
-  constraint, sequence=lhcb1,range=acfca.brirn.b1, xy  =  ocpp, pxy=0.0;
-  constraint, sequence=lhcb2,range=acfca.brirn.b2, xy  =  ocpp, pxy=0.0;
+  constraint, sequence=lhcb1,range=acfga.4blirn.b1, xy  =  occp, pxy=0.0;
+  constraint, sequence=lhcb2,range=acfga.4blirn.b2, xy  =  ocpp, pxy=0.0;
+  constraint, sequence=lhcb1,range=acfga.4brirn.b1, xy  =  ocpp, pxy=0.0;
+  constraint, sequence=lhcb2,range=acfga.4brirn.b2, xy  =  ocpp, pxy=0.0;
 
   vary, name=acbxhv1.lirn,step=1.e-12,lower=-CLIMmcbxfb,upper=CLIMmcbxfb;
   vary, name=acbxhv1.rirn,step=1.e-12,lower=-CLIMmcbxfb,upper=CLIMmcbxfb;
@@ -452,10 +454,10 @@ match, sequence=lhcb1,lhcb2, beta0= birirnb1,birirnb2,
   constraint, sequence=lhcb2,range=ipirn, pxy  =  0, xy=0;
   constraint, sequence=lhcb1,range=e.ds.rirn.b1,xy = 0.0, pxy = 0.0;
   constraint, sequence=lhcb2,range=e.ds.rirn.b2,xy = 0.0, pxy = 0.0;
-  constraint, sequence=lhcb1,range=acfca.blirn.b1, xy  =  off*1e-3, pxy=0.0;
-  constraint, sequence=lhcb2,range=acfca.blirn.b2, xy  = occm*off*1e-3, pxy=0.0;
-  constraint, sequence=lhcb1,range=acfca.brirn.b1, xy  =  off*1e-3, pxy=0.0;
-  constraint, sequence=lhcb2,range=acfca.brirn.b2, xy  = occm*off*1e-3, pxy=0.0;
+  constraint, sequence=lhcb1,range=acfga.4blirn.b1, xy  =  off*1e-3, pxy=0.0;
+  constraint, sequence=lhcb2,range=acfga.4blirn.b2, xy  = occm*off*1e-3, pxy=0.0;
+  constraint, sequence=lhcb1,range=acfga.4brirn.b1, xy  =  off*1e-3, pxy=0.0;
+  constraint, sequence=lhcb2,range=acfga.4brirn.b2, xy  = occm*off*1e-3, pxy=0.0;
 
   vary, name=acbxhv1.lirn,step=1.e-12,lower=-CLIMmcbxfb,upper=CLIMmcbxfb;
   vary, name=acbxhv1.rirn,step=1.e-12,lower=-CLIMmcbxfb,upper=CLIMmcbxfb;
@@ -526,10 +528,10 @@ match, sequence=lhcb1,lhcb2, beta0= birirnb1,birirnb2,
   constraint, sequence=lhcb2,range=ipirn, pxy  =  0, xy=0;
   constraint, sequence=lhcb1,range=e.ds.rirn.b1,xy = 0.0, pxy = 0.0;
   constraint, sequence=lhcb2,range=e.ds.rirn.b2,xy = 0.0, pxy = 0.0;
-  constraint, sequence=lhcb1,range=acfca.blirn.b1, xy  =  off*1e-3;
-  constraint, sequence=lhcb2,range=acfca.blirn.b2, xy  =  off*1e-3;
-  constraint, sequence=lhcb1,range=acfca.brirn.b1, xy  =  off*1e-3;
-  constraint, sequence=lhcb2,range=acfca.brirn.b2, xy  =  off*1e-3;
+  constraint, sequence=lhcb1,range=acfga.4blirn.b1, xy  =  off*1e-3;
+  constraint, sequence=lhcb2,range=acfga.4blirn.b2, xy  =  off*1e-3;
+  constraint, sequence=lhcb1,range=acfga.4brirn.b1, xy  =  off*1e-3;
+  constraint, sequence=lhcb2,range=acfga.4brirn.b2, xy  =  off*1e-3;
 
   vary,name=acbrdhv4.lirnb1,step=1.e-12,lower=-CLIMmcbrd,upper=CLIMmcbrd;
   vary,name=acbrdhv4.lirnb2,step=1.e-12,lower=-CLIMmcbrd,upper=CLIMmcbrd;
@@ -695,6 +697,16 @@ setvars_knob,table=knob_on_ccsr1vb2,knob=on_ccsr1vb2;
 setvars_knob,table=knob_on_ccsr5hb2,knob=on_ccsr5hb2;
 setvars_knob,table=knob_on_ccsr5vb2,knob=on_ccsr5vb2;
 
+
+show,xip1b1, xip1b2, xip5b1, xip5b2;
+show,pxip1b1, pxip1b2, pxip5b1, pxip5b2;
+show,yip1b1, yip1b2, yip5b1, yip5b2;
+show,pyip1b1, pyip1b2, pyip5b1, pyip5b2;
+
+exec,_save_optics_orbconf15(1);
+exec,_save_optics_orbconf15(5);
+
+
 value,tar_on_x1hs,tar_on_x1vs,tar_on_x1hl,tar_on_x1vl,tar_on_x5hs,tar_on_x5vs,tar_on_x5hl,tar_on_x5vl;
 value,tar_on_sep1h,tar_on_sep1v,tar_on_sep5h,tar_on_sep5v;
 value,tar_on_a1h,tar_on_a1v,tar_on_a5h,tar_on_a5v;
@@ -713,13 +725,3 @@ tar_xing_ir15=tar_on_sep1h+tar_on_sep1v+tar_on_sep5h+tar_on_sep5v+
               tar_on_ccs1h+tar_on_ccs1v+tar_on_ccs5h+tar_on_ccs5v;
 
 value,tar_xing_ir15;
-
-show,xip1b1, xip1b2, xip5b1, xip5b2;
-show,pxip1b1, pxip1b2, pxip5b1, pxip5b2;
-show,yip1b1, yip1b2, yip5b1, yip5b2;
-show,pyip1b1, pyip1b2, pyip5b1, pyip5b2;
-
-exec,_save_optics_orbconf15(1);
-exec,_save_optics_orbconf15(5);
-
-
