@@ -1367,15 +1367,17 @@ _crab_make_rf(NNN,SIDE,IRN,BIM,FFF): macro {
     psl:={0.25,ps2_crabNNNSIDEIRNBIM,ps3_crabNNNSIDEIRNBIM,ps4_crabNNNSIDEIRNBIM};
 };
 
+l_crab=0;
+
 _crab_make_cc(nnn,side,irn,bim,fff): macro {
     !sigmas=0.075;
     vhcrabref_sideirnbim:=ahcrab_sideirnbim/fff*cosiirn*nrj*1e9/1e6;
     vvcrabref_sideirnbim:=avcrab_sideirnbim/fff*sinuirn*nrj*1e9/1e6;
-    acfgah.4nnnsideirn.bim: crabcavity, l=0,
+    acfgah.4nnnsideirn.bim: crabcavity, l:=l_crab,
       volt:=on_crabirn*vhcrabref_sideirnbim*bv_aux, !implements reflect.py,
       lag:=phi_crab_sideirnbim*bv_aux, !implements reflect.py 3 sign changes s,x,z,
       freq=crabrf/1e6,tilt=0,rv3=1e9,rv4=1e9;
-    acfgav.4nnnsideirn.bim: crabcavity, l=0,
+    acfgav.4nnnsideirn.bim: crabcavity, l:=l_crab,
       volt:=on_crabirn*vvcrabref_sideirnbim, ! 2 sign change s,z
       lag:=phi_crab_sideirnbim,
       freq:=crabrf/1e6,tilt=pi/2,rv3=1e9,rv4=1e9;
