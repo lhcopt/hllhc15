@@ -5,3 +5,10 @@ opt_ramp_xxxx_yyyy.madx
 xxxx is the beta* in point 1/5 in [mm]
 yyyy is the beta* in point 8 in [mm]
 
+Optics for the ramp without MS10
+
+opt_ramp_WoMS10_zTeV_xxxx_yyyy_thin.madx
+
+z is the beam energy in [TeV]
+xxxx is the beta* in point 1/5 in [mm]
+yyyy is the beta* in point 8 in [mm]
