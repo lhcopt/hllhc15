@@ -38,6 +38,8 @@ dq1aq1b     =          0.6060000000 -0.014; !-0.04 from V1.2
 dq1q2a      =          3.6280000000 +0.005 ;
 dq2aq2b     =          2.1080000000 +0.004;
 dq2bq3      =          3.6280000000 +0.005;
+dq3bmcb     =          2.727;
+dq3bd1      =          9.81;
 deltaposD2  =        -15.805;!max. field D2 35.1 Tm
 deltaposQ4  =         10.500   ;
 deltaposQ5  =         10.500 ;
@@ -394,7 +396,9 @@ exec,install_ir15_cmn4(TAXS.1,posTAXSL1,posTAXSR1,posTAXSL5,posTAXSR5);
 !===============================================
 
 ! Lstar {.46 |Q1|}
-Lstar   =23.00-0.08+0.007;  !22.965 m in V6.503
+if (lstar==0){
+ Lstar   =23.00-0.08+0.007;  !22.965 m in V6.503
+}
 
 posQ1a:=Lstar +l.MQXFA/2.;
 posQ1b:=posQ1a+l.MQXFA+dq1aq1b;
@@ -535,7 +539,7 @@ l.MCTSXF  = 0.099;  !0.089 0.087 a6 corrector
 !              .08 | MCSXF   | .08
 !              .08 | MCSSXF  | .08 }
 
-posMCBXFA  := posQ3b     + (l.MQXFA   + l.MCBXFA )/2.+2.727; !68.560
+posMCBXFA  := posQ3b     + (l.MQXFA   + l.MCBXFA )/2.+dq3bmcb; !68.560
 posMQSXF   := posMCBXFA  + 1.61; ! 70.17
 posMCTXF   := posMQSXF   + 0.64; !value,posMCTXF -70.81;
 posMCTSXF  := posMCTXF   + 0.438; !value,posMCTSXF-71.248;
@@ -707,7 +711,7 @@ MBXF.4L1: MBXF,angle:= ad1.lr1, K0 := kd1.lr1, polarity=+1 *bv_aux;
 MBXF.4R1: MBXF,angle:=-ad1.lr1, K0 :=-kd1.lr1, polarity=-1 *bv_aux;
 MBXF.4L5: MBXF,angle:= ad1.lr5, K0 := kd1.lr5, polarity=+1 *bv_aux;
 MBXF.4R5: MBXF,angle:=-ad1.lr5, K0 :=-kd1.lr5, polarity=-1 *bv_aux;
-posD1 = posQ3b+(l.MQXFA+l.MBXF)/2+9.81;
+posD1 = posQ3b+(l.MQXFA+l.MBXF)/2+dq3bd1;
 ! MBXF cryostat ends ay 82.700
 ! MBXF cold madd ends at 81.467
 
