@@ -340,7 +340,7 @@ a_VTCLPX=  (0.067-1.5e-3*(1-no_bs_tol))/2; !Luca Gentini 28/3/2019
 b_VTCLPX=  (0.080-1.5e-3*(1-no_bs_tol))/2; !Luca Gentini 28/3/2019
 r_TCT= (0.080-1.5e-3*(1-no_bs_tol))/2; ! TCT connectors
 
-g_TC=0.04; r_TC=0.045;
+g_TC=0.030; r_TC=0.040-1.5e-3*(1-no_bs_tol)/2;
 r_tol_TC:=0.00084+r_tol_TC_mod;
 h_tol_TC:=0.00136+h_tol_TC_mod;v_tol_TC:=0.001+v_tol_TC_mod;
 
