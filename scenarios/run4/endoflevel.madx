@@ -9,33 +9,33 @@ call,file="slhc/hllhc_sequence.madx";
 exec, disable_sext(ms.10); ! disable ms10 in the sequence
 
 call,file="slhc/toolkit/enable_crabcavities.madx";
-call,file="slhc/ramp/opt_inj_6000.madx";
+call,file="slhc/round/opt_round_200_1500_tcdq4.madx";
 
-exec,mk_beam(450);
+exec,mk_beam(7000);
 exec,check_ip(b1); exec,check_ip(b2);
 
 
 phi_ir1=0;
-on_x1= 500;
-on_sep1= 2.0;
+on_x1= 250;
+on_sep1= 0;
 phi_ir2=90;
 on_x2=-170;
-on_sep2= 3.5;
-on_a2=-40;
+on_sep2= 1.4;
+on_a2=  0;
 phi_ir5=90;
-on_x5= 500;
-on_sep5= 2.0;
-phi_ir8=0;
+on_x5= 250;
+on_sep5= 0;
+phi_ir8=90;
 on_x8= 170;
-on_sep8=-3.5;
-on_a8=-40;
+on_sep8=0;
+on_a8=0;
 
 on_alice=7000/nrj;
 on_lhcb=7000/nrj;
 
-on_crab1=0;
-on_crab5=0;
-on_disp=0;
+on_crab1=-190;
+on_crab5=-190;
+on_disp=1;
 
 qxb1  = 62.27;
 qyb1  = 60.295;
