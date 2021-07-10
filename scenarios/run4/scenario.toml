@@ -1,0 +1,11 @@
+# Configuration
+
+title = "HL-LHC: Run 4 configuration"
+
+scenarios = [
+"inj",
+"ramp",
+"collision"
+]
+
+

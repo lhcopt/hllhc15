@@ -1,0 +1,34 @@
+option, warn,info;
+
+option, -echo,-warn,-info;
+call,file="lhc/lhc.seq";
+call,file="slhc/toolkit/macro.madx";
+option, -echo,warn,-info;
+
+call,file="slhc/hllhc_sequence.madx";
+exec, disable_sext(ms.10); ! disable ms10 in the sequence
+
+call,file="slhc/toolkit/enable_crabcavities.madx";
+call,file="slhc/ramp/";
+
+exec,mk_beam(450);
+exec,check_ip(b1); exec,check_ip(b2);
+
+on_x1= 250; on_sep1= 2.0;
+on_x2=-170; on_sep2= 3.5; on_a2=-40;
+on_x5= 250; on_sep5= 2.0;
+on_x8= 170; on_sep8=-3.5; on_a8=-40;
+
+on_alice=7000/nrj; on_lhcb=7000/nrj; ! negative polarity
+
+on_crab1=0; on_crab5=0; on_disp=0;
+
+qxb1  = 62.27; qyb1  = 60.295; qxb2  = 62.27; qyb2  = 60.295;
+qpxb1 = 15   ; qpyb1 = 15    ; qpxb2 = 15   ; qpyb2 = 15    ;
+call, file="slhc/toolkit/rematch_chroma.madx";
+call, file="slhc/toolkit/rematch_tune.madx";
+
+VRF400:=8.;LAGRF400.B1=0.5;LAGRF400.B2=0.;
+
+exec,check_ip(b1); exec,check_ip(b2);
+
