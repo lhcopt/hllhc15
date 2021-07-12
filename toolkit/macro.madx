@@ -3963,6 +3963,41 @@ on_a8=0;on_o8=0;
 on_disp=0;
 };
 
+! sets crossing_enabled to 0 after a crossing_disable call
+! sets crossing_enabled to 1 when crossings are set
+! sets crossing_enabled to -1 when some crossings are off but other knobs are on
+query_crossing: macro={
+  all_crossings=0;
+  if (on_x1<>0) {all_crossings=all_crossings+1;};
+  if (on_x2<>0) {all_crossings=all_crossings+10;};
+  if (on_x5<>0) {all_crossings=all_crossings+100;};
+  if (on_x8<>0) {all_crossings=all_crossings+1000;};
+  if (on_a1<>0) {all_crossings=all_crossings+2;};
+  if (on_a2<>0) {all_crossings=all_crossings+20;};
+  if (on_a5<>0) {all_crossings=all_crossings+200;};
+  if (on_a8<>0) {all_crossings=all_crossings+2000;};
+  if (on_sep1<>0) {all_crossings=all_crossings+4;};   
+  if (on_sep2<>0) {all_crossings=all_crossings+40;};   
+  if (on_sep5<>0) {all_crossings=all_crossings+400;};   
+  if (on_sep8<>0) {all_crossings=all_crossings+4000;};   
+  if (on_o1<>0) {all_crossings=all_crossings+8;};   
+  if (on_o2<>0) {all_crossings=all_crossings+80;}; 
+  if (on_o5<>0) {all_crossings=all_crossings+800;};   
+  if (on_o8<>0) {all_crossings=all_crossings+8000;};   
+  if (on_alice<>0) {all_crossings=all_crossings+10000;};
+  if (on_lhcb<>0) {all_crossings=all_crossings+100000;};
+  if (on_disp<>0) {all_crossings=all_crossings+1000000;};
+  if (all_crossings==0) {             ! after a crossing_disable call
+    crossing_enabled=0;
+  } elseif (on_x1==0 || on_x2==0) {   ! some crossings are off, but other knobs are on
+    crossing_enabled=-1;  
+  } elseif (on_x5==0 || on_x8==0) {
+    crossing_enabled=-1;
+  } else {
+    crossing_enabled=1;
+  };
+};
+
 crossing_check: macro={
 on_x1=1;on_x5=1;on_sep1=1;on_sep5=1;
 on_x2=1;on_x8=1;on_sep2=1;on_sep8=1;on_lhcb=-1;on_alice=1;
