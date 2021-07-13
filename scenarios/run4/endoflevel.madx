@@ -30,7 +30,7 @@ on_x5= 250;
 on_sep5= 0;
 phi_ir8=90;
 on_x8= 170;
-on_sep8=0.022; ! leveling at 2e33 Hz/cm2
+on_sep8=-0.022; ! leveling at 2e33 Hz/cm2
 on_a8=0;
 
 on_alice=7000/nrj;
