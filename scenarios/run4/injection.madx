@@ -1,3 +1,6 @@
+system,"[ ! -e slhc ] && ln -nfs /afs/cern.ch/eng/lhc/optics/HLLHCV1.5 slhc";
+system,"[ ! -e lhc ] && ln -nfs /afs/cern.ch/eng/lhc/optics/runIII lhc";
+
 option, warn,info;
 
 option, -echo,-warn,-info;
