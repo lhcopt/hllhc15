@@ -1618,6 +1618,13 @@ posTAXN   := posTCTPXV-1.1625-0.183-l.TAXN/2;
 
 !posTAXNA  := posTAXN - L.TAXN/2;
 !posTAXNB  := posTAXN + L.TAXN/2;
+!
+!           Single pipe   reference plate     parallel pipes   absorber
+!IPside     126.952        127.772            127.812          127.834
+!nonIPSide  127.772        127.812            131.244          131.144
+!           absorber
+! reference LHCVCTYF0001 - LHCVCTYF0002 - LHCTAXN_0012
+
 posTAXNA  := 127.812; ! J. Hansen 15/5/2020
 posTAXNB  := 131.144;
 posTCLPXA  := posTCLPX - L.TCLPX/2;

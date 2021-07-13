@@ -18,7 +18,7 @@ exec,check_ip(b1); exec,check_ip(b2);
 
 on_x1= 250; on_sep1=0.0;
 on_x2  =-170; on_sep2 =0.1447;
-on_x5= 250; on_sep5=0.0; 
+on_x5= 250; on_sep5=0.0;
 on_x8  =170; on_sep8 =-0.034;
 
 on_alice=7000/nrj; on_lhcb=7000/nrj;
