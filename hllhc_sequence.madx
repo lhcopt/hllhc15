@@ -1927,7 +1927,7 @@ l.MBH                = 5.307; !28/11/2017 F. Savary
 Kmax_MBH             = 11.23;
 Kmin_MBH             = 0.2460;!..to be reviewed
 Imax_MBH             = 11850;
-l.tcld              = 1;
+l.tcld              = 0.6; !was 1m but collided with new sequence needing 0.6
 
 
 
@@ -2147,6 +2147,7 @@ LAGRF400.B2=0.;
 !-----
 !IR7 MQW
 !-----
+if(mqwb.5l7.b1->l>0){
 
 if(bv_aux ==1){
 seqedit,sequence=lhcb1;
@@ -2181,7 +2182,7 @@ install,element=mqwa.c5r7.b1,at= 130.966,from=IP7;
 install,element=mqwa.d5r7.b1,at= 134.766,from=IP7;
 install,element=mqwa.e5r7.b1,at= 138.566,from=IP7;
 endedit;
-}
+};
 
 seqedit,sequence=lhcb2;
 install,element=mqwa.c5l7.b2,at=-130.966*bv_aux,from=IP7;
@@ -2192,12 +2193,16 @@ install,element=mqwa.d5r7.b2,at= 134.766*bv_aux,from=IP7;
 install,element=mqwa.e5r7.b2,at= 138.566*bv_aux,from=IP7;
 endedit;
 
+};
+
 
 !-----
 !IR2 TCLD, TDIS
 !-----
 ! https://indico.cern.ch/event/680374/9/12/2017
 ! https://indico.cern.ch/event/680374/contributions/2787337/attachments/1570745/2477819/ICL_Meeting_-_11TTCLD_-_CCTCLD_v.3.pptx
+
+if (TCLD.A11R2.B1->l == 0) {
 
 posTCLD.2=425.71735;
 value,posTCLD.2;
@@ -2243,9 +2248,13 @@ remove,element=TDIS.4R8.B2;
 install,element=TDIS.4R8.B2,  at= posTDIS*bv_aux,from=ip8;
 endedit;
 
+};
 
 
 
+
+
+if (TANB.A4L8.B1->l ==0) {
 
 !-----
 !IR8 TANB
@@ -2285,6 +2294,8 @@ install,element=BPMWB.4L8.B2, at=-posBPMWB.8*bv_aux,from=ip8;
 install,element=BPMWI.4R8.B2, at= posBPMWB.8*bv_aux,from=ip8;
 endedit;
 
+};
+
 
 
 !-----
@@ -2294,8 +2305,10 @@ endedit;
 posBGV = 200;
 posBSRTD4 = 117.114;
 
-BGV.7L4.B2: marker; BGV.7R4.B1: marker;
-BSRTD4.5L4.B1: marker; BSRTD4.5R4.B2: marker;
+BGV.7L4.B2: marker, mech_sep=0.420*bv_aux;
+BGV.7R4.B1: marker, mech_sep=-0.420;
+BSRTD4.5L4.B1: marker, mech_sep=-0.271;
+BSRTD4.5R4.B2: marker, mech_sep=0.271*bv_aux;
 
 if(bv_aux ==1){
 seqedit,sequence=lhcb1;
@@ -2321,10 +2334,10 @@ install,element=BGV.7L4.B2, at=-posBGV*bv_aux, from=IP4;
 install,element=BSRTD4.5R4.B2, at= posBSRTD4*bv_aux, from=IP4;
 endedit;
 
-ELENS.5L4.B1: marker;
-ELENS.5L4.B2: marker;
-ELENS.5R4.B1: marker;
-ELENS.5R4.B2: marker;
+ELENS.5L4.B1: marker, mech_sep=- 0.420;
+ELENS.5L4.B2: marker, mech_sep=  0.420 * bv_aux;
+ELENS.5R4.B1: marker, mech_sep=- 0.420;
+ELENS.5R4.B2: marker, mech_sep=  0.420 * bv_aux;
 
 if(bv_aux ==1){
   seqedit,sequence=lhcb1;
