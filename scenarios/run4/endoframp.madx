@@ -1,3 +1,6 @@
+system,"[ ! -e slhc ] && ln -nfs /afs/cern.ch/eng/lhc/optics/HLLHCV1.5 slhc";
+system,"[ ! -e lhc ] && ln -nfs /afs/cern.ch/eng/lhc/optics/runIII lhc";
+
 option, warn,info;
 
 option, -echo,-warn,-info;
@@ -20,11 +23,11 @@ on_x1= 250;
 on_sep1= 0.85;
 phi_ir2=90;
 on_x2=-170;
-on_sep2= 1.4;
+on_sep2= -1.4;
 on_a2=  0;
 phi_ir5=90;
 on_x5= 250;
-on_sep5= 0.85;
+on_sep5= -0.85;
 phi_ir8=90;
 on_x8= 170;
 on_sep8=-1.0;
@@ -48,7 +51,7 @@ qpyb2 = 15    ;
 call, file="slhc/toolkit/rematch_chroma.madx";
 call, file="slhc/toolkit/rematch_tune.madx";
 
-VRF400:=8.;
+VRF400:=16.;
 LAGRF400.B1=0.5;
 LAGRF400.B2=0.;
 

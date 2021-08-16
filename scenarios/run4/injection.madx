@@ -1,3 +1,6 @@
+system,"[ ! -e slhc ] && ln -nfs /afs/cern.ch/eng/lhc/optics/HLLHCV1.5 slhc";
+system,"[ ! -e lhc ] && ln -nfs /afs/cern.ch/eng/lhc/optics/runIII lhc";
+
 option, warn,info;
 
 option, -echo,-warn,-info;
@@ -20,13 +23,13 @@ on_x1= 500;
 on_sep1= 2.0;
 phi_ir2=90;
 on_x2=-170;
-on_sep2= 3.5;
+on_sep2= -3.5;
 on_a2=-40;
 phi_ir5=90;
 on_x5= 500;
-on_sep5= 2.0;
+on_sep5= -2.0;
 phi_ir8=0;
-on_x8= 170;
+on_x8= -170;
 on_sep8=-3.5;
 on_a8=-40;
 
