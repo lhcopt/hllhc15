@@ -1,4 +1,4 @@
-call,file="slhc/util/lhc.seq";
+call,file="slhc/lhc/lhc.seq";
 call,file="slhc/toolkit/macro.madx";
 call,file="slhc/hllhc_sequence.madx";
 call,file="slhc/toolkit/enable_crabcavities.madx";
