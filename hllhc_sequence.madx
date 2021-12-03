@@ -2144,6 +2144,28 @@ if (mbh_ir7q10b >0){ exec,install_mbh(b,10 ,7,6,8); };
 LAGRF400.B1=0.5;
 LAGRF400.B2=0.;
 
+
+!------------
+! WIRE
+!-----------------
+
+BBWCHL: marker;
+pos.BBWCHL1=183.188+4.882;
+pos.BBWCHL2=pos.BBWCHL1+4.800;
+
+BBWCHL.5L1.B1: BBWCHL;
+BBWCHL.5L1.B2: BBWCHL;
+BBWCHL.5R1.B1: BBWCHL;
+BBWCHL.5R1.B2: BBWCHL;
+BBWCHL.5L5.B1: BBWCHL;
+BBWCHL.5L5.B2: BBWCHL;
+BBWCHL.5R5.B1: BBWCHL;
+BBWCHL.5R5.B2: BBWCHL;
+
+
+exec,install_ir15_b1_b2_alt(BBWCHL.5,pos.BBWCHL1,pos.BBWCHL2);
+
+
 !-----
 !IR7 MQW
 !-----
