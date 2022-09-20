@@ -1621,15 +1621,15 @@ posTCTPXHB  := posTCTPXH + L.TCTPXH/2;
 posTCTPXVA  := posTCTPXV - L.TCTPXV/2;
 posTCTPXVB  := posTCTPXV + L.TCTPXV/2;
 
-sepTCLPX   := round((posTCLPX -posD1)/(posD2-posD1)*194*10)/1e4;
-sepTCTPXH  := round((posTCTPXH-posD1)/(posD2-posD1)*194*10)/1e4;
-sepTCTPXV  := round((posTCTPXV-posD1)/(posD2-posD1)*194*10)/1e4;
-sepTCLPXA  := round((posTCLPXA -posD1)/(posD2-posD1)*194*10)/1e4;
-sepTCTPXHA := round((posTCTPXHA-posD1)/(posD2-posD1)*194*10)/1e4;
-sepTCTPXVA := round((posTCTPXVA-posD1)/(posD2-posD1)*194*10)/1e4;
-sepTCLPXB  := round((posTCLPXB -posD1)/(posD2-posD1)*194*10)/1e4;
-sepTCTPXHB := round((posTCTPXHB-posD1)/(posD2-posD1)*194*10)/1e4;
-sepTCTPXVB := round((posTCTPXVB-posD1)/(posD2-posD1)*194*10)/1e4;
+sepTCLPX   := round((posTCLPX -posD1)/(posD2-posD1)*194*10)/1e6;
+sepTCTPXH  := round((posTCTPXH-posD1)/(posD2-posD1)*194*10)/1e6;
+sepTCTPXV  := round((posTCTPXV-posD1)/(posD2-posD1)*194*10)/1e6;
+sepTCLPXA  := round((posTCLPXA -posD1)/(posD2-posD1)*194*10)/1e6;
+sepTCTPXHA := round((posTCTPXHA-posD1)/(posD2-posD1)*194*10)/1e6;
+sepTCTPXVA := round((posTCTPXVA-posD1)/(posD2-posD1)*194*10)/1e6;
+sepTCLPXB  := round((posTCLPXB -posD1)/(posD2-posD1)*194*10)/1e6;
+sepTCTPXHB := round((posTCTPXHB-posD1)/(posD2-posD1)*194*10)/1e6;
+sepTCTPXVB := round((posTCTPXVB-posD1)/(posD2-posD1)*194*10)/1e6;
 
 sepTAXN   := round((posTAXN -posD1)/(posD2-posD1)*194*1e3)/1e6;
 sepTAXNA  := round((posTAXNA -posD1)/(posD2-posD1)*194*1e3)/1e6;
