@@ -1,0 +1,38 @@
+system,"ln -fns /afs/cern.ch/eng/lhc/optics/HLLHCV1.5 slhc";
+system,"ln -fns /afs/cern.ch/eng/lhc/optics/runIII lhc";
+option, warn,info;
+
+Option, -echo,-warn,-info;
+call,file="lhc/lhc.seq";
+call,file="slhc/toolkit/macro.madx";
+Option, -echo,warn,-info;
+
+call,file="slhc/hllhc_sequence.madx";
+exec, DISABLE_SEXT(MS.10); ! Disable MS10 in the sequence
+
+call,file="slhc/toolkit/enable_crabcavities.madx";
+!call,file="slhc/ramp/opt_ramp_WoMS10_7TeV_1000_1500_thin.madx";
+call,file="/afs/cern.ch/work/s/skostogl/public/opt_ramp_WoMS10_7TeV_1000_1500_thin.madx";
+
+phi_ir8=90; ! Vertical crossing in IP8
+exec,mk_beam(7000);
+exec,check_ip(b1); exec,check_ip(b2);
+
+on_x1= 250; on_sep1=0.0;
+on_x2  =-170; on_sep2 =0.1447;
+on_x5= 250; on_sep5=0.0;
+on_x8  =170; on_sep8 =-0.034;
+
+on_alice=7000/nrj; on_lhcb=7000/nrj;
+
+on_crab1=0; on_crab5=0;
+on_disp=0;
+
+!qxb1  = 62.31; qyb1  = 60.32; qxb2  = 62.31; qyb2  = 60.32;
+!qpxb1 = 15   ; qpyb1 = 15    ; qpxb2 = 15   ; qpyb2 = 15    ;
+!call, file="slhc/toolkit/rematch_chroma.madx";
+!call, file="slhc/toolkit/rematch_tune.madx";
+
+VRF400:=16.;LAGRF400.B1=0.5;LAGRF400.B2=0.;
+
+exec,check_ip(b1); exec,check_ip(b2);

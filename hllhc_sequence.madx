@@ -38,6 +38,8 @@ dq1aq1b     =          0.6060000000 -0.014; !-0.04 from V1.2
 dq1q2a      =          3.6280000000 +0.005 ;
 dq2aq2b     =          2.1080000000 +0.004;
 dq2bq3      =          3.6280000000 +0.005;
+dq3bmcb     =          2.727;
+dq3bd1      =          9.81;
 deltaposD2  =        -15.805;!max. field D2 35.1 Tm
 deltaposQ4  =         10.500   ;
 deltaposQ5  =         10.500 ;
@@ -394,7 +396,9 @@ exec,install_ir15_cmn4(TAXS.1,posTAXSL1,posTAXSR1,posTAXSL5,posTAXSR5);
 !===============================================
 
 ! Lstar {.46 |Q1|}
-Lstar   =23.00-0.08+0.007;  !22.965 m in V6.503
+if (lstar==0){
+ Lstar   =23.00-0.08+0.007;  !22.965 m in V6.503
+}
 
 posQ1a:=Lstar +l.MQXFA/2.;
 posQ1b:=posQ1a+l.MQXFA+dq1aq1b;
@@ -535,7 +539,7 @@ l.MCTSXF  = 0.099;  !0.089 0.087 a6 corrector
 !              .08 | MCSXF   | .08
 !              .08 | MCSSXF  | .08 }
 
-posMCBXFA  := posQ3b     + (l.MQXFA   + l.MCBXFA )/2.+2.727; !68.560
+posMCBXFA  := posQ3b     + (l.MQXFA   + l.MCBXFA )/2.+dq3bmcb; !68.560
 posMQSXF   := posMCBXFA  + 1.61; ! 70.17
 posMCTXF   := posMQSXF   + 0.64; !value,posMCTXF -70.81;
 posMCTSXF  := posMCTXF   + 0.438; !value,posMCTSXF-71.248;
@@ -707,7 +711,7 @@ MBXF.4L1: MBXF,angle:= ad1.lr1, K0 := kd1.lr1, polarity=+1 *bv_aux;
 MBXF.4R1: MBXF,angle:=-ad1.lr1, K0 :=-kd1.lr1, polarity=-1 *bv_aux;
 MBXF.4L5: MBXF,angle:= ad1.lr5, K0 := kd1.lr5, polarity=+1 *bv_aux;
 MBXF.4R5: MBXF,angle:=-ad1.lr5, K0 :=-kd1.lr5, polarity=-1 *bv_aux;
-posD1 = posQ3b+(l.MQXFA+l.MBXF)/2+9.81;
+posD1 = posQ3b+(l.MQXFA+l.MBXF)/2+dq3bd1;
 ! MBXF cryostat ends ay 82.700
 ! MBXF cold madd ends at 81.467
 
@@ -1367,15 +1371,17 @@ _crab_make_rf(NNN,SIDE,IRN,BIM,FFF): macro {
     psl:={0.25,ps2_crabNNNSIDEIRNBIM,ps3_crabNNNSIDEIRNBIM,ps4_crabNNNSIDEIRNBIM};
 };
 
+l_crab=0;
+
 _crab_make_cc(nnn,side,irn,bim,fff): macro {
     !sigmas=0.075;
     vhcrabref_sideirnbim:=ahcrab_sideirnbim/fff*cosiirn*nrj*1e9/1e6;
     vvcrabref_sideirnbim:=avcrab_sideirnbim/fff*sinuirn*nrj*1e9/1e6;
-    acfgah.4nnnsideirn.bim: crabcavity, l=0,
+    acfgah.4nnnsideirn.bim: crabcavity, l:=l_crab,
       volt:=on_crabirn*vhcrabref_sideirnbim*bv_aux, !implements reflect.py,
       lag:=phi_crab_sideirnbim*bv_aux, !implements reflect.py 3 sign changes s,x,z,
       freq=crabrf/1e6,tilt=0,rv3=1e9,rv4=1e9;
-    acfgav.4nnnsideirn.bim: crabcavity, l=0,
+    acfgav.4nnnsideirn.bim: crabcavity, l:=l_crab,
       volt:=on_crabirn*vvcrabref_sideirnbim, ! 2 sign change s,z
       lag:=phi_crab_sideirnbim,
       freq:=crabrf/1e6,tilt=pi/2,rv3=1e9,rv4=1e9;
@@ -1612,6 +1618,13 @@ posTAXN   := posTCTPXV-1.1625-0.183-l.TAXN/2;
 
 !posTAXNA  := posTAXN - L.TAXN/2;
 !posTAXNB  := posTAXN + L.TAXN/2;
+!
+!           Single pipe   reference plate     parallel pipes   absorber
+!IPside     126.952        127.772            127.812          127.834
+!nonIPSide  127.772        127.812            131.244          131.144
+!           absorber
+! reference LHCVCTYF0001 - LHCVCTYF0002 - LHCTAXN_0012
+
 posTAXNA  := 127.812; ! J. Hansen 15/5/2020
 posTAXNB  := 131.144;
 posTCLPXA  := posTCLPX - L.TCLPX/2;
@@ -1885,8 +1898,8 @@ install,element=BPTX.4R5.B2, at= posBPTX*bv_aux, from=IP5;
 
 l.BBLR=3.5;
 BBLR: placeholder, l=l.BBLR;
-posBBLRA=188.07;
-posBBLRB=192.87;
+posBBLRA=183.188+4.882;
+posBBLRB=posBBLRA+4.800;
 
 exec,newel_ir15_b12(BBLR.4,BBLR,arcSEP);
 exec,install_ir15_b1_b2_alt(BBLR.4,posBBLRB,posBBLRA);
@@ -1914,7 +1927,7 @@ l.MBH                = 5.307; !28/11/2017 F. Savary
 Kmax_MBH             = 11.23;
 Kmin_MBH             = 0.2460;!..to be reviewed
 Imax_MBH             = 11850;
-l.tcld              = 1;
+l.tcld              = 0.6; !was 1m but collided with new sequence needing 0.6
 
 
 
@@ -2131,9 +2144,11 @@ if (mbh_ir7q10b >0){ exec,install_mbh(b,10 ,7,6,8); };
 LAGRF400.B1=0.5;
 LAGRF400.B2=0.;
 
+
 !-----
 !IR7 MQW
 !-----
+if(mqwb.5l7.b1->l>0){
 
 if(bv_aux ==1){
 seqedit,sequence=lhcb1;
@@ -2168,7 +2183,7 @@ install,element=mqwa.c5r7.b1,at= 130.966,from=IP7;
 install,element=mqwa.d5r7.b1,at= 134.766,from=IP7;
 install,element=mqwa.e5r7.b1,at= 138.566,from=IP7;
 endedit;
-}
+};
 
 seqedit,sequence=lhcb2;
 install,element=mqwa.c5l7.b2,at=-130.966*bv_aux,from=IP7;
@@ -2179,12 +2194,16 @@ install,element=mqwa.d5r7.b2,at= 134.766*bv_aux,from=IP7;
 install,element=mqwa.e5r7.b2,at= 138.566*bv_aux,from=IP7;
 endedit;
 
+};
+
 
 !-----
 !IR2 TCLD, TDIS
 !-----
 ! https://indico.cern.ch/event/680374/9/12/2017
 ! https://indico.cern.ch/event/680374/contributions/2787337/attachments/1570745/2477819/ICL_Meeting_-_11TTCLD_-_CCTCLD_v.3.pptx
+
+if (TCLD.A11R2.B1->l == 0) {
 
 posTCLD.2=425.71735;
 value,posTCLD.2;
@@ -2230,9 +2249,13 @@ remove,element=TDIS.4R8.B2;
 install,element=TDIS.4R8.B2,  at= posTDIS*bv_aux,from=ip8;
 endedit;
 
+};
 
 
 
+
+
+if (TANB.A4L8.B1->l ==0) {
 
 !-----
 !IR8 TANB
@@ -2272,6 +2295,8 @@ install,element=BPMWB.4L8.B2, at=-posBPMWB.8*bv_aux,from=ip8;
 install,element=BPMWI.4R8.B2, at= posBPMWB.8*bv_aux,from=ip8;
 endedit;
 
+};
+
 
 
 !-----
@@ -2281,8 +2306,10 @@ endedit;
 posBGV = 200;
 posBSRTD4 = 117.114;
 
-BGV.7L4.B2: marker; BGV.7R4.B1: marker;
-BSRTD4.5L4.B1: marker; BSRTD4.5R4.B2: marker;
+BGV.7L4.B2: marker, mech_sep=0.420*bv_aux;
+BGV.7R4.B1: marker, mech_sep=-0.420;
+BSRTD4.5L4.B1: marker, mech_sep=-0.271;
+BSRTD4.5R4.B2: marker, mech_sep=0.271*bv_aux;
 
 if(bv_aux ==1){
 seqedit,sequence=lhcb1;
@@ -2308,10 +2335,10 @@ install,element=BGV.7L4.B2, at=-posBGV*bv_aux, from=IP4;
 install,element=BSRTD4.5R4.B2, at= posBSRTD4*bv_aux, from=IP4;
 endedit;
 
-ELENS.5L4.B1: marker;
-ELENS.5L4.B2: marker;
-ELENS.5R4.B1: marker;
-ELENS.5R4.B2: marker;
+ELENS.5L4.B1: marker, mech_sep=- 0.420;
+ELENS.5L4.B2: marker, mech_sep=  0.420 * bv_aux;
+ELENS.5R4.B1: marker, mech_sep=- 0.420;
+ELENS.5R4.B2: marker, mech_sep=  0.420 * bv_aux;
 
 if(bv_aux ==1){
   seqedit,sequence=lhcb1;

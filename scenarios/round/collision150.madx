@@ -1,4 +1,4 @@
-call,file="slhc/util/lhc.seq";
+call,file="slhc/lhc/lhc.seq";
 call,file="slhc/toolkit/macro.madx";
 call,file="slhc/hllhc_sequence.madx";
 call,file="slhc/toolkit/enable_crabcavities.madx";
@@ -7,7 +7,7 @@ call,file="slhc/round/opt_round_150_1500.madx";
 exec,mk_beam(7000);
 
 on_x1hs= 250; on_sep1h=0; on_sep1v=0;
-on_x2v =-170; on_sep2v =0.138;
+on_x2v =-170; on_sep2h =-0.138;
 on_x5vs= 250; on_sep5h=0; on_sep5v=0;
 on_x8h =-200; on_sep8v =0.031; !2.8 sigma
 
@@ -20,5 +20,5 @@ call, file="slhc/toolkit/rematch_chroma.madx";
 call, file="slhc/toolkit/rematch_tune.madx";
 
 
-on_crab1=190; on_crab5=190;
+on_crab1=-190; on_crab5=-190;
 VRF400:=16.;LAGRF400.B1=0.5;LAGRF400.B2=0.;
