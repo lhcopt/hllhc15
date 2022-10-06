@@ -2148,7 +2148,7 @@ LAGRF400.B2=0.;
 !-----
 !IR7 MQW
 !-----
-if(mqwb.5l7.b1->l>0){
+if(mqwb.5l7.b2->l>0){
 
 if(bv_aux ==1){
 seqedit,sequence=lhcb1;
