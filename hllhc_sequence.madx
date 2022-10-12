@@ -1644,9 +1644,9 @@ sepTCLPXB  := round((posTCLPXB -posD1)/(posD2-posD1)*194*10)/1e4;
 sepTCTPXHB := round((posTCTPXHB-posD1)/(posD2-posD1)*194*10)/1e4;
 sepTCTPXVB := round((posTCTPXVB-posD1)/(posD2-posD1)*194*10)/1e4;
 
-sepTAXN   := round((posTAXN -posD1)/(posD2-posD1)*194*1e3)/1e6;
-sepTAXNA  := round((posTAXNA -posD1)/(posD2-posD1)*194*1e3)/1e6;
-sepTAXNB  := round((posTAXNB -posD1)/(posD2-posD1)*194*1e3)/1e6;
+sepTAXN   := round((posTAXN -posD1)/(posD2-posD1)*194*10)/1e4;
+sepTAXNA  := round((posTAXNA -posD1)/(posD2-posD1)*194*10)/1e4;
+sepTAXNB  := round((posTAXNB -posD1)/(posD2-posD1)*194*10)/1e4;
 
 value,posTAXN,posTAXNA,posTAXNB;
 value,sepTAXN,sepTAXNA,sepTAXNB;
