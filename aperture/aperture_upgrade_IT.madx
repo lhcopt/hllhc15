@@ -68,8 +68,14 @@ r_BPMSQW:= 0.075;      ! was 60 mm in slhcv1 and slhcv2
 r_BPMSQ1:= 0.112/2;      ! was 60 mm in slhcv1 and slhcv2
 r_BPMSQ := 0.123/2;      ! was 60 mm in slhcv1 and slhcv2
 r_BPMSQ4:= 0.150/2;      ! was 60 mm in slhcv1 and slhcv2
-r_BPMSQ4W:= 0.150/2;      ! was 60 mm in slhcv1 and slhcv2
+r_BPMSQ4W:= 0.10635/2;      ! was 60 mm in slhcv1 and slhcv2
 
+
+r_vd2=0.10635 -1e-3*(1-no_bs_tol);
+r_vd3=0.125 - 1e-3*(1-no_bs_tol);
+
+r_tol_VD2=0.0025+0.001;
+r_tol_VD3=0.0025+0.001;
 
 ! F. Galan 15/1/2017 0.5 mechanical tolerances should be addeded, however ground motion should be smaller since we can realign every YTS.
 ! Fiducializatin of 0.5 mm should be also Ok
@@ -86,8 +92,8 @@ r_tol_BPM:=0.0025+r_tol_BPM_mod; h_tol_BPM:=0.0000+h_tol_BPM_mod; v_tol_BPM:=0.0
 r_tol_D1 :=0.0006+r_tol_D1_mod; h_tol_D1 :=0.0010+h_tol_D1_mod; v_tol_D1 :=0.0010+v_tol_D1_mod;
 
 
-r_DFXJ:= 0.150/2;
-r_tol_DFXJ:=0.0020+r_tol_TAS_mod; h_tol_DFXJ:=0.0005+h_tol_TAS_mod; v_tol_DFXJ:=0.0005+v_tol_TAS_mod;
+!r_DFXJ:= 0.150/2;
+!r_tol_DFXJ:=0.0020+r_tol_TAS_mod; h_tol_DFXJ:=0.0005+h_tol_TAS_mod; v_tol_DFXJ:=0.0005+v_tol_TAS_mod;
 
 
 exec, aperture_def(TAXS.1,     RECTELLIPSE, r_TAS, r_TAS, r_TAS,     r_TAS,      r_tol_TAS,h_tol_TAS,v_tol_TAS);
@@ -122,8 +128,12 @@ exec, aperture_def(MBXF.4,    OCTAGON,      h_q23,v_q23,angle1_q23,angle2_q23, r
 exec, aperture_def(VMBXF.4,    OCTAGON,     h_q23,v_q23,angle1_q23,angle2_q23, r_tol_D1, h_tol_D1, v_tol_D1);
 exec, aperture_def(VMBXFA.4,   OCTAGON,     h_vd1,v_vd1,angle1_vd1,angle2_vd1, r_tol_D1, h_tol_D1, v_tol_D1);
 exec, aperture_def(VMBXFB.4,   OCTAGON,     h_vd1,v_vd1,angle1_vd1,angle2_vd1, r_tol_D1, h_tol_D1, v_tol_D1);
+exec, aperture_def(VMBXFC.4,   RECTELLIPSE,  r_VD2, r_VD2,r_VD2,r_VD2,r_tol_VD2,0,0);
+exec, aperture_def(VMBXFD.4,   RECTELLIPSE,  r_VD2, r_VD2,r_VD2,r_VD2,r_tol_VD2,0,0);
+exec, aperture_def(VMBXFE.4,   RECTELLIPSE,  r_VD3, r_VD3,r_VD3,r_VD3,r_tol_VD3,0,0);
+exec, aperture_def(VMBXFF.4,   RECTELLIPSE,  r_VD3, r_VD3,r_VD3,r_VD3,r_tol_VD3,0,0);
 
-exec, aperture_def(DFXJ.4,    RECTELLIPSE,  r_DFXJ,r_DFXJ,r_DFXJ,    r_DFXJ,     r_tol_DFXJ,h_tol_DFXJ,v_tol_DFXJ);
+!exec, aperture_def(DFXJ.4,    RECTELLIPSE,  r_DFXJ,r_DFXJ,r_DFXJ,    r_DFXJ,     r_tol_DFXJ,h_tol_DFXJ,v_tol_DFXJ);
 
 exec, aperture_2in1_def(BPMQSTZA.1 , OCTAGON,     h_q1 ,v_q1, angle1_q1 ,angle2_q1 , r_tol_Q1,h_tol_Q1,v_tol_Q1);
 exec, aperture_2in1_def(BPMQSTZB.A2, OCTAGON,     h_q23,v_q23,angle1_q23,angle2_q23, r_tol_Q3,h_tol_Q3,v_tol_Q3);

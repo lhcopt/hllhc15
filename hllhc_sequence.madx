@@ -369,6 +369,13 @@ newel_ir15_b12(ENAME,PARE,MECHSEP): macro={
 
 
 
+newel_ir15_cmn(ENAME,PARE): macro={
+        ENAMEL1: PARE;
+        ENAMER1: PARE;
+        ENAMEL5: PARE;
+        ENAMER5: PARE;
+};
+
 
 !===============================================
 ! TAS
@@ -724,12 +731,18 @@ DFXJ.4L1: DFXJ; DFXJ.4R1: DFXJ; DFXJ.4L5: DFXJ; DFXJ.4R5: DFXJ;
 posVMBXF = 81.826; !end triplet screen
 posVMBXFA= 81.836; !start new beam screen
 posVMBXFB= 82.386; !end beam screen
+posVMBXFC= 83.869; ! start DN212.7
+posVMBXFD= 108.5876; ! end DN212.7
+posVMBXFE= 108.5877; ! start DN250
+posVMBXFF= 126.954; ! end DN250
 
-VMBXF.4L1: marker; VMBXF.4R1: marker; VMBXF.4L5: marker; VMBXF.4R5: marker;
-VMBXFA.4L1: marker; VMBXFA.4R1: marker; VMBXFA.4L5: marker; VMBXFA.4R5: marker;
-VMBXFB.4L1: marker; VMBXFB.4R1: marker; VMBXFB.4L5: marker; VMBXFB.4R5: marker;
-
-
+exec,newel_ir15_cmn(VMBXF.4,marker);
+exec,newel_ir15_cmn(VMBXFA.4,marker);
+exec,newel_ir15_cmn(VMBXFB.4,marker);
+exec,newel_ir15_cmn(VMBXFC.4,marker);
+exec,newel_ir15_cmn(VMBXFD.4,marker);
+exec,newel_ir15_cmn(VMBXFE.4,marker);
+exec,newel_ir15_cmn(VMBXFF.4,marker);
 
 
 ! D1
@@ -738,6 +751,10 @@ exec,install_ir15_cmn(DFXJ.4,  posDFXJ);
 exec,install_ir15_cmn(VMBXF.4, posVMBXF);
 exec,install_ir15_cmn(VMBXFA.4, posVMBXFA);
 exec,install_ir15_cmn(VMBXFB.4, posVMBXFB);
+exec,install_ir15_cmn(VMBXFC.4, posVMBXFC);
+exec,install_ir15_cmn(VMBXFD.4, posVMBXFD);
+exec,install_ir15_cmn(VMBXFE.4, posVMBXFE);
+exec,install_ir15_cmn(VMBXFF.4, posVMBXFF);
 
 !===============================================
 !BPM triplet D1
