@@ -367,6 +367,12 @@ newel_ir15_b12(ENAME,PARE,MECHSEP): macro={
         ENAMER5.B2: PARE, mech_sep=-MECHSEP*bv_aux;
 };
 
+newel_ir15_cmn(ENAME,PARE): macro={
+        ENAMEL1: PARE;
+        ENAMER1: PARE;
+        ENAMEL5: PARE;
+        ENAMER5: PARE;
+};
 
 
 newel_ir15_cmn(ENAME,PARE): macro={
@@ -2373,3 +2379,32 @@ install,element=ELENS.5L4.B2,  at=-40*bv_aux,from=ip4;
 install,element=ELENS.5R4.B2,  at= 40*bv_aux,from=ip4;
 endedit;
 
+! Sector valves
+
+! VABCKNAF: marker;
+! VABCDDAE: marker;
+! VABCEEAK: marker;
+! VABCM_Z1: marker;
+! VABCM_Z2: marker;
+! VABCM_Z3: marker;
+! VABCM_Z4: marker;
+! VABCBMAB: marker;
+! VABCBMAC: marker;
+! 
+! 
+! 
+! posVABCKNAF=83.118;
+! posVABCDDAE=136.870;
+! posVABCEEAK=152.772;
+! posVABCM_Z1=155.062;
+! posVABCM_Z2=161.655;
+! 
+! 
+! exec,newel_ir15_cmn(VABCKNAF.4 ,VABCKNA);
+! exec,newel_ir15_b12(VABCDDAE.4,VABCDDAE, 0.166);
+! exec,newel_ir15_b12(VABCEEAK.4,VABCEEAK, 0.194);
+! exec,newel_ir15_b12(VABCM_Z1.4,VABCM_Z1, 0.194);
+! exec,newel_ir15_b12(VABCM_Z2.4,VABCM_Z2, 0.194);
+! 
+! !exec,install_ir15_cmn(DFXJ.4,  posDFXJ);
+! !exec,install_ir15_b12(DFXJ.4,  posDFXJ);
