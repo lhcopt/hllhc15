@@ -6,8 +6,8 @@ qtlimit3 := sch*200.0/scale;
 qtlimit4 := sch*125.0/scale;
 qtlimit5 := sch*120.0/scale;
 qtlimit6 := sch*90.0/scale;
-if (q5l6_lim==0) { q5l6_lim=160*7.5/7;};
-if (q5r6_lim==0) { q5r6_lim=160*7.5/7;};
+if (q5l6_lim==0) { q5l6_lim=173.2;}; !was 160*7.5/7
+if (q5r6_lim==0) { q5r6_lim=173.2;}; !was 160*7.5/7
 qtlimit5l := sch*q5l6_lim/scale;
 qtlimit5r := sch*q5r6_lim/scale;
 
