@@ -1,7 +1,7 @@
 option, warn,info;
 system,"rm -rf temp"; system,"mkdir temp";
-system,"ln -fns /afs/cern.ch/eng/lhc/optics/HLLHCV1.5 slhc";
-system,"ln -fns /afs/cern.ch/eng/lhc/optics/runIII lhc";
+system,"[ -e slhc ] || ln -fns /afs/cern.ch/eng/lhc/optics/HLLHCV1.5 slhc";
+system,"[ -e lhc ]  || ln -fns /afs/cern.ch/eng/lhc/optics/runIII lhc";
 
 Option, -echo,-warn,-info;
 call,file="lhc/aperture/const_for_aperture.madx";
