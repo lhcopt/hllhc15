@@ -110,7 +110,11 @@ constraint,expr=refbdumpb2>4500;
 };
 !constraint,sequence=lhcb2,range=MKD.H5R6.B2,betx>380;!380: nom. LHC optics, minimize kick(mkd)/sigma_x for asynch. dump
 if(betxtcdqb2>0){
-  constraint,expr=refbetxtcdqb2>betxtcdqb2;
+  if(betxtcdq_exact==1){
+      constraint, expr=refbetxtcdqb2 = betxtcdqb2;
+  } else {
+      constraint, expr=refbetxtcdqb2 > betxtcdqb2;
+  }
 }else{
   constraint,sequence=lhcb2,range=TCDQA.A4L6.B2,betx>430;
 };
