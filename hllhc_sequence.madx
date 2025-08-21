@@ -1381,7 +1381,7 @@ vacfga.4NNNr5.b2: marker, mech_sep=-0.194*bv_aux;
 _crab_make_rf(NNN,SIDE,IRN,BIM,FFF): macro {
     kn1_crabNNNSIDEIRNBIM:=ahcrab_sideirnbim/fff*cosiirn;
     ks1_crabNNNSIDEIRNBIM:=avcrab_sideirnbim/fff*sinuirn;
-    acfga.4NNNSIDEIRN.BIM: rfmultipole,l=0, freq=crabrf,
+    acfga.4NNNSIDEIRN.BIM: rfmultipole,l=0, freq=crabrf/1e6,
     knl:={on_crabirn*kn1_crabNNNSIDEIRNBIM,
           on_crabirn*kn2_crabNNNSIDEIRNBIM,
           on_crabirn*kn3_crabNNNSIDEIRNBIM,
@@ -1391,7 +1391,7 @@ _crab_make_rf(NNN,SIDE,IRN,BIM,FFF): macro {
           on_crabirn*ks3_crabNNNSIDEIRNBIM,
           on_crabirn*ks4_crabNNNSIDEIRNBIM},
     pnl:={0.25,pn2_crabNNNSIDEIRNBIM,pn3_crabNNNSIDEIRNBIM,pn4_crabNNNSIDEIRNBIM},
-    psl:={0.25,ps2_crabNNNSIDEIRNBIM,ps3_crabNNNSIDEIRNBIM,ps4_crabNNNSIDEIRNBIM};
+    psl:={-0.25,ps2_crabNNNSIDEIRNBIM,ps3_crabNNNSIDEIRNBIM,ps4_crabNNNSIDEIRNBIM};
 };
 
 l_crab=0;
