@@ -28,7 +28,7 @@
 ! -----------------------------------------------------------
 
 ! mylhcbeam=4 for Beam 4
-if (mylhcbeam>2){ bv_aux=-1; } else { bv_aux=1; };
+if (mylhcbeam>2){ bv_aux=-1; isnotb4=0; } else { bv_aux=1; isnotb4=1; };
 
 
 if (on_layout_custom==0){
@@ -1395,6 +1395,9 @@ _crab_make_rf(NNN,SIDE,IRN,BIM,FFF): macro {
 };
 
 l_crab=0;
+bvlag_crab_b1=0;
+bvlag_crab_b2=0.5;  !needed to implement bv
+
 
 _crab_make_cc(nnn,side,irn,bim,fff): macro {
     !sigmas=0.075;
@@ -1402,11 +1405,11 @@ _crab_make_cc(nnn,side,irn,bim,fff): macro {
     vvcrabref_sideirnbim:=avcrab_sideirnbim/fff*sinuirn*nrj*1e9/1e6;
     acfgah.4nnnsideirn.bim: crabcavity, l:=l_crab,
       volt:=on_crabirn*vhcrabref_sideirnbim*bv_aux, !implements reflect.py,
-      lag:=phi_crab_sideirnbim*bv_aux, !implements reflect.py 3 sign changes s,x,z,
+      lag:=phi_crab_sideirnbim*bv_aux + isnotb4*bvlag_crab_bim  , !implements reflect.py 3 sign changes s,x,z,
       freq=crabrf/1e6,tilt=0,rv3=1e9,rv4=1e9;
     acfgav.4nnnsideirn.bim: crabcavity, l:=l_crab,
       volt:=on_crabirn*vvcrabref_sideirnbim, ! 2 sign change s,z
-      lag:=phi_crab_sideirnbim,
+      lag:=phi_crab_sideirnbim + isnotb4*bvlag_crab_bim,
       freq:=crabrf/1e6,tilt=pi/2,rv3=1e9,rv4=1e9;
     print,text="making acfgah.4nnnsideirn.bim";
     print,text="making acfgav.4nnnsideirn.bim";
